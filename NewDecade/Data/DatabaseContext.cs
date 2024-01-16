@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using NewDecade.Models;
 
 namespace NewDecade.Data
 {
@@ -6,6 +7,8 @@ namespace NewDecade.Data
     {
         public DatabaseContext(DbContextOptions<DatabaseContext> o) : base(o) { }
 
-        DbSet
+        DbSet<Customers> customers;
+        DbSet<Invoice> invoices;
+        DbSet<Users> users;
     }
 }

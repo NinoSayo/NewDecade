@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ASUS\\Desktop\\Project3\\NewDecade\\NewDecade\\NewDecade.csproj": {}
+    "C:\\Users\\ASUS\\Source\\Repos\\NinoSayo\\NewDecade\\NewDecade\\NewDecade.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ASUS\\Desktop\\Project3\\NewDecade\\NewDecade\\NewDecade.csproj": {
+    "C:\\Users\\ASUS\\Source\\Repos\\NinoSayo\\NewDecade\\NewDecade\\NewDecade.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASUS\\Desktop\\Project3\\NewDecade\\NewDecade\\NewDecade.csproj",
+        "projectUniqueName": "C:\\Users\\ASUS\\Source\\Repos\\NinoSayo\\NewDecade\\NewDecade\\NewDecade.csproj",
         "projectName": "NewDecade",
-        "projectPath": "C:\\Users\\ASUS\\Desktop\\Project3\\NewDecade\\NewDecade\\NewDecade.csproj",
+        "projectPath": "C:\\Users\\ASUS\\Source\\Repos\\NinoSayo\\NewDecade\\NewDecade\\NewDecade.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASUS\\Desktop\\Project3\\NewDecade\\NewDecade\\obj\\",
+        "outputPath": "C:\\Users\\ASUS\\Source\\Repos\\NinoSayo\\NewDecade\\NewDecade\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,14 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "Microsoft.AspNet.WebApi.Core": {
+              "target": "Package",
+              "version": "[5.3.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[7.0.14, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
               "version": "[7.0.13, )"
@@ -61,6 +69,10 @@
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.5.0, )"
+            },
+            "ZXing.Net": {
+              "target": "Package",
+              "version": "[0.16.9, )"
             }
           },
           "imports": [
