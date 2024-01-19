@@ -25,11 +25,9 @@
   <ItemGroup>
     <None Remove="Repositories\" />
     <None Remove="IRepositories\" />
-    <None Remove="Services\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Repositories\" />
     <Folder Include="IRepositories\" />
-    <Folder Include="Services\" />
   </ItemGroup>
 </Project>
