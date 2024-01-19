@@ -8,30 +8,19 @@ namespace NewDecade.Models
 	public class Order
 	{
         [Key]
-        public int OrderID { get; set; }
 
-        [ForeignKey("Customer")]
-        public int CustomerID { get; set; }
-
-        [Required]
-        public DateTime OrderDate { get; set; }
-
-        [Required]
-        public DateTime DeliveryDate { get; set; }
-
-        [Required]
-        [StringLength(50)]
-        public string Status { get; set; } // Processing, Shipped, Delivered
-
-        [Required]
-        [Column(TypeName = "decimal(18, 2)")]
+        public int OrderId { get; set; }
+        public int UserId { get; set; }
+        public string FullName { get; set; }
+        public string Address { get; set; }
+        public string PhoneNumber { get; set; }
+        public decimal ClothingSetPrice { get; set; }
+        public List<Item> Items { get; set; }
         public decimal TotalAmount { get; set; }
-
-        [StringLength(50)]
-        public string PaymentStatus { get; set; }
-
-        [Required]
-        public List<Item> Items { get; set; } = new List<Item>(); // List of items in the order
+        public decimal TotalWeight { get; set; }
+        public string DeliveryStatus { get; set; } // Sẵn Sàng, Đang Chờ, Đã Giao
+        public string PaymentStatus { get; set; } // Trả trước, Thanh toán phần còn lại
+        public string ColorStatus { get; set; } // Mã màu tương ứng với trạng thái
     }
 
 }
