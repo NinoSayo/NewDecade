@@ -8,8 +8,6 @@
 /Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/bin/Debug/net7.0/Azure.Core.dll
 /Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/bin/Debug/net7.0/Azure.Identity.dll
 /Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/bin/Debug/net7.0/Humanizer.dll
-/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/bin/Debug/net7.0/System.Net.Http.Formatting.dll
-/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/bin/Debug/net7.0/System.Web.Http.dll
 /Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/bin/Debug/net7.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
 /Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/bin/Debug/net7.0/Microsoft.AspNetCore.OpenApi.dll
 /Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/bin/Debug/net7.0/Microsoft.Bcl.AsyncInterfaces.dll
@@ -33,7 +31,6 @@
 /Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/bin/Debug/net7.0/Microsoft.Win32.SystemEvents.dll
 /Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/bin/Debug/net7.0/Mono.TextTemplating.dll
 /Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/bin/Debug/net7.0/Newtonsoft.Json.dll
-/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/bin/Debug/net7.0/Newtonsoft.Json.Bson.dll
 /Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/bin/Debug/net7.0/Swashbuckle.AspNetCore.Swagger.dll
 /Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/bin/Debug/net7.0/Swashbuckle.AspNetCore.SwaggerGen.dll
 /Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/bin/Debug/net7.0/Swashbuckle.AspNetCore.SwaggerUI.dll

@@ -1,12 +1,13 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NewDecade.Models
 {
-	public class Blog
+	public class BlogPost
 	{
         [Key]
-        public int PostId { get; set; }
+        public int BlogPostId { get; set; }
 
         [Required(ErrorMessage = "Please provide a title for the blog post.")]
         public string Title { get; set; }

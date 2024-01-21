@@ -1,50 +1,35 @@
 ﻿<Properties StartupConfiguration="{A92D3E59-99C5-431C-A45C-5AAADEB86BFF}|https">
   <MonoDevelop.Ide.ItemProperties.NewDecade PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="NewDecade/Controllers/SMSController.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="NewDecade/Repositories/CommentRepository.cs">
     <Files>
-      <File FileName="NewDecade/Models/Order.cs" Line="38" Column="1" />
-      <File FileName="NewDecade/Models/Item.cs" Line="33" Column="43" />
-      <File FileName="NewDecade/Models/Invoice.cs" />
-      <File FileName="NewDecade/Models/Users.cs" />
-      <File FileName="NewDecade/Models/Customers.cs" />
-      <File FileName="NewDecade/Data/DatabaseContext.cs" Line="19" Column="63" />
-      <File FileName="NewDecade/Models/Barcode.cs" Line="12" Column="26" />
-      <File FileName="NewDecade/Models/Report.cs" />
-      <File FileName="NewDecade/Models/Delivery.cs" />
-      <File FileName="NewDecade/Models/SMSLog.cs" />
-      <File FileName="NewDecade/Models/DashboardMetrics.cs" />
-      <File FileName="NewDecade/IRepositories/IDeliveryRepositoty.cs" />
-      <File FileName="NewDecade/IRepositories/IInvoiceRepository.cs" />
-      <File FileName="NewDecade/Repositories/InvoiceRepository.cs" />
-      <File FileName="NewDecade/Repositories/DeliveryRepository.cs" />
-      <File FileName="NewDecade/IRepositories/IOrderRepository.cs" Line="8" Column="42" />
-      <File FileName="NewDecade/Repositories/OrderRepository.cs" Line="19" Column="13" />
-      <File FileName="NewDecade/appsettings.json" Line="1" Column="1" />
-      <File FileName="NewDecade/Program.cs" Line="20" Column="65" />
-      <File FileName="NewDecade/Controllers/OrderController.cs" Line="21" Column="10" />
-      <File FileName="NewDecade/Controllers/InvoiceController.cs" Line="1" Column="1" />
-      <File FileName="NewDecade/Controllers/BarcodeController.cs" Line="1" Column="1" />
-      <File FileName="NewDecade/Controllers/DashboardController.cs" Line="1" Column="1" />
-      <File FileName="NewDecade/Controllers/DeliveryController.cs" Line="1" Column="1" />
-      <File FileName="NewDecade/Controllers/ReportController.cs" Line="1" Column="1" />
-      <File FileName="NewDecade/Controllers/SMSController.cs" Line="1" Column="1" />
+      <File FileName="NewDecade/Controllers/BlogController.cs" Line="15" Column="9" NotebookId="1" />
+      <File FileName="NewDecade/Repositories/BlogRepository.cs" Line="111" Column="10" NotebookId="1" />
+      <File FileName="NewDecade/Models/BlogPost.cs" Line="10" Column="24" NotebookId="1" />
+      <File FileName="NewDecade/IRepositories/IBlogRepository.cs" Line="21" Column="1" NotebookId="1" />
+      <File FileName="NewDecade/Models/Comment.cs" Line="25" Column="37" NotebookId="1" />
+      <File FileName="NewDecade/Models/Users.cs" Line="9" Column="26" NotebookId="1" />
+      <File FileName="NewDecade/IRepositories/ICommentRepository.cs" Line="13" Column="48" NotebookId="1" />
+      <File FileName="NewDecade/Repositories/CommentRepository.cs" Line="69" Column="14" NotebookId="1" />
     </Files>
+    <FloatingWindows>
+      <FloatingWindow WindowId="1" X="578" Y="93" Width="1093" Height="782">
+        <Files>
+          <File FileName="NewDecade/Repositories/ContactRepository.cs" Line="1" Column="1" />
+        </Files>
+      </FloatingWindow>
+    </FloatingWindows>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="Project3">
+          <Node name="Project3" expanded="True">
             <Node name="NewDecade">
-              <Node name="Dependencies" expanded="True" />
+              <Node name="Controllers" expanded="True" />
               <Node name="Data" expanded="True" />
               <Node name="IRepositories" expanded="True" />
               <Node name="Models" expanded="True" />
-              <Node name="Repositories">
-                <Node name="ReportRepository.cs" selected="True" />
+              <Node name="Repositories" expanded="True">
+                <Node name="CommentRepository.cs" selected="True" />
               </Node>
             </Node>
           </Node>
@@ -52,5 +37,9 @@
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

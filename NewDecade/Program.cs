@@ -4,6 +4,7 @@ using Microsoft.IdentityModel.Tokens;
 using NewDecade.Data;
 using NewDecade.IRepositories;
 using NewDecade.Repositories;
+using NewDecade.Repositories.Blog;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,21 +18,9 @@ builder.Services.AddSwaggerGen();
 
 builder.Services.AddDbContext<DatabaseContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("MyConnection")));
 
-builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IBlogRepository, BlogRepository>();
+builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(op =>
-{
-    op.RequireHttpsMetadata = false;
-    op.SaveToken = true;
-    op.TokenValidationParameters = new TokenValidationParameters()
-    {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidAudience = builder.Configuration["Jwt:Audience"],
-        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
-    };
-});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
