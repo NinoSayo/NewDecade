@@ -7,11 +7,11 @@ using ReactServer.Models;
 
 namespace ReactServer.Services
 {
-    public class OrderService : IOrderRepository
+    public class OrderRepository : IOrderRepository
     {
         private readonly DatabaseContext db;
 
-        public OrderService(DatabaseContext db)
+        public OrderRepository(DatabaseContext db)
         {
             this.db = db;
         }
