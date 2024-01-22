@@ -1,28 +1,17 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
 
-namespace NewDecade.Models
+namespace ReactServer.Models
 {
-	public class Order
-	{
-        [Key]
-
+    public class Order 
+    {
         public int OrderId { get; set; }
-        public int UserId { get; set; }
         public string FullName { get; set; }
         public string Address { get; set; }
-        public string PhoneNumber { get; set; }
-        public decimal ClothingSetPrice { get; set; }
-        public List<Item> Items { get; set; }
-        public decimal TotalAmount { get; set; }
-        public decimal TotalWeight { get; set; }
-        public string DeliveryStatus { get; set; } // Sẵn Sàng, Đang Chờ, Đã Giao
-        public string PaymentStatus { get; set; } // Trả trước, Thanh toán phần còn lại
-        public string ColorStatus { get; set; } // Mã màu tương ứng với trạng thái
+        public int Phone { get; set; }
+        public int Quantity { get; set; }
+        public int Weight { get; set; }
+        public string LaundryType { get; set; }
+        public int TotalAmount {  get; set; } 
+
     }
-
 }
-
-
