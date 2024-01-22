@@ -15,8 +15,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddDbContext<DatabaseContext>(option => 
  option.UseSqlServer(builder.Configuration.GetConnectionString("MyConnection")));
 
-builder.Services.AddScoped<IProductRepository, ProductSerivce>();
-builder.Services.AddScoped<IOrderRepository, OrderService>();
+builder.Services.AddScoped<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IOrderRepository, OrderRepository>();
 
 
 var allowOrigins = builder.Configuration.GetSection("AllowOrigins").Get<string[]>();
