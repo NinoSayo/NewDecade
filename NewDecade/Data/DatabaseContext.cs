@@ -1,21 +1,32 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using NewDecade.Models;
+using ReactServer.Models;
 
-namespace NewDecade.Data
+namespace ReactServer.Data
 {
     public class DatabaseContext : DbContext
     {
-        public DatabaseContext(DbContextOptions<DatabaseContext> o) : base(o) { }
+        public DatabaseContext(DbContextOptions options) : base(options)
+        {
+        }
 
-        DbSet<Customers> Customers { get; set; }
-        DbSet<Invoice> Invoices { get; set; }
-        DbSet<Users> Users { get; set; }
-        DbSet<Order> Orders { get; set; }
-        DbSet<Item> Items { get; set; }
-        DbSet<Report> Reports { get; set; }
-        DbSet<SMSLog> SMSLogs { get; set; }
-        DbSet<Barcode> Barcodes { get; set; }
-        DbSet<Delivery> Deliveries { get; set; }
-        DbSet<DashboardMetrics> DashboardMetrics { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Order> Orders { get; set; }
+
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<Product>().HasData(new Product[]
+            {
+                new Product { Id = 1, Name="Giặt theo số lượng", Description="Giá tiền sẽ được tính theo số lượng đồ mà bạn muốn giặt"},
+                new Product { Id = 2, Name="Giặt theo trọng lượng", Description="Giá tiền sẽ được tính theo Kg"},
+            });
+            modelBuilder.Entity<Order>().HasData(new Order[]
+            {
+                new Order {OrderId = 1, FullName="Nguyen Van A", Address="11 Nguyen Thi Minh Khai", Phone=123123, LaundryType=""},
+                new Order {OrderId = 2, FullName="Nguyen Van B", Address="33 Nguyen Thi Minh Khai", Phone=321123, LaundryType=""}
+            });
+
+        }
     }
 }
