@@ -1,128 +1,59 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using NewDecade.Models;
-using NewDecade.Repositories;
+using ReactServer.IRepository;
+using ReactServer.Models;
 
-namespace NewDecade.Controllers
+namespace ReactServer.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class OrderController : ControllerBase
     {
-        private readonly IOrderRepository orderRepository;
+        private readonly IOrderRepository _orderRepository;
 
         public OrderController(IOrderRepository orderRepository)
         {
-            this.orderRepository = orderRepository;
+            _orderRepository = orderRepository;
         }
-      
-        [HttpPost("AddItemToOrder/{orderId}")]
-            public async Task<ActionResult<int>> AddItemToOrder(int orderId, Item item)
-            {
-                try
-                {
-                    var order = await orderRepository.GetOrderDetails(orderId);
 
-                    if (order != null)
-                    {
-                        // Thực hiện tính toán số tiền thanh toán cho mục
-                        decimal itemPayment = item.IsClothingSet ? CalculateClothingSetPayment(item):item.PaymentType == "PerWeight" ? await orderRepository.CalculateWeightPayment(orderId, item): item.PricePerUnit * item.Quantity;
-                        // Thêm mục vào đơn hàng
-                        var result = await orderRepository.AddItemToOrder(orderId, item);
-                        // Cập nhật tổng số tiền và cân nặng của đơn hàng
-                        order.TotalAmount += itemPayment;
-                        order.TotalWeight += item.Weight * item.Quantity;
-
-                        /*await orderRepository.SaveChangesAsync();*/
-                        return result;
-                    }
-
-                    return BadRequest($"Failed to add item to order. OrderId {orderId} not found.");
-                }
-                catch (Exception ex)
-                {
-                    return BadRequest($"Failed to add item to order. Error: {ex.Message}");
-                }
-            }
-        private decimal CalculateClothingSetPayment(Item item)
+        [HttpGet]
+        public async Task<ActionResult<IEnumerable<Order>>> GetOrders()
         {
-            return item.PricePerUnit;
-
+            var orders = await _orderRepository.GetOrder();
+            return Ok(orders);
         }
-
-        [HttpGet("{userId}")]
-        public async Task<ActionResult<IEnumerable<Order>>> GetOrderByUser(int userId)
+        [HttpGet("{orderId}")]
+        public async Task<ActionResult<Order>> GetOrderById(int orderId)
         {
-            try
+            var order = await _orderRepository.GetOrderById(orderId);
+
+            if (order == null)
             {
-                var listOrder = await orderRepository.GetAllOrders(userId);
-                return Ok(listOrder);
+                return NotFound();
             }
-            catch (Exception ex)
-            {
-                return BadRequest($"Failed to get orders for user with id {userId}. Error: {ex.Message}");
-            }
+
+            return Ok(order);
         }
+
 
         [HttpPost]
-        public async Task<ActionResult<string>> PostOrder([FromBody] Order order)
+        public async Task<ActionResult<Order>> AddOrder(Order order)
         {
-            try
-            {
-                if (string.IsNullOrEmpty(order.FullName) || string.IsNullOrEmpty(order.Address) || string.IsNullOrEmpty(order.PhoneNumber))
-                {
-                    return BadRequest("Please provide your full name, address, and phone number.");
-                }
-                var result = await orderRepository.AddOrder(order);
-                return Ok($"Order added successfully. OrderId: {result}");
-            }
-            catch (Exception ex)
-            {
-                return BadRequest($"Failed to add order. Error: {ex.Message}");
-            }
+            var addedOrder = await _orderRepository.AddOrder(order);
+            return Ok(addedOrder);
         }
-        /* đây là phần trạng thái đơn hàng
-         [HttpPut("UpdateDeliveryStatus/{orderId}/{deliveryStatus}")]
-         public async Task<ActionResult<int>> UpdateDeliveryStatus(int orderId, string deliveryStatus)
-         {
-             try
-             {
-                 var result = await orderRepository.UpdateDeliveryStatus(orderId, deliveryStatus);
-                 return Ok($"Delivery status updated successfully for OrderId: {result}");
-             }
-             catch (Exception ex)
-             {
-                 return BadRequest($"Failed to update delivery status. Error: {ex.Message}");
-             }
-         }
-         [HttpPut("UpdatePaymentStatus/{orderId}/{paymentStatus}")]
-         public async Task<ActionResult<int>> UpdatePaymentStatus(int orderId, string paymentStatus)
-         {
-             try
-             {
-                 var result = await orderRepository.UpdatePaymentStatus(orderId, paymentStatus);
-                 return Ok($"Payment status updated successfully for OrderId: {result}");
-             }
-             catch (Exception ex)
-             {
-                 return BadRequest($"Failed to update payment status. Error: {ex.Message}");
-             }
-         }
 
-         [HttpPut("UpdateRemainingAmount/{orderId}/{itemId}/{remainingAmount}")]
-         public async Task<ActionResult<int>> UpdateRemainingAmount(int orderId, int itemId, decimal remainingAmount)
-         {
-             try
-             {
-                 var result = await orderRepository.UpdateRemainingAmount(orderId, itemId, remainingAmount);
-                 return Ok($"Remaining amount updated successfully for ItemId: {result}");
-             }
-             catch (Exception ex)
-             {
-                 return BadRequest($"Failed to update remaining amount. Error: {ex.Message}");
-             }
-         }
-     }*/
+        [HttpDelete("{orderId}")]
+        public async Task<ActionResult<bool>> DeleteOrder(int orderId)
+        {
+            var result = await _orderRepository.DeleteOrder(orderId);
 
+            if (!result)
+            {
+                return NotFound(); // Đơn đặt hàng không tìm thấy
+            }
+
+            return Ok(result);
+        }
     }
 }
