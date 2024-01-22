@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 
 namespace ReactServer.Services
 {
-    public class ProductSerivce : IProductRepository
+    public class ProductRepository : IProductRepository
     {
         private readonly DatabaseContext db;
 
-        public ProductSerivce(DatabaseContext db)
+        public ProductRepository(DatabaseContext db)
         {
             this.db = db;
         }
