@@ -1,10 +1,7 @@
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.IdentityModel.Tokens;
-using NewDecade.Data;
-using NewDecade.IRepositories;
-using NewDecade.Repositories;
-using System.Text;
+using ReactServer.Data;
+using ReactServer.IRepository;
+using ReactServer.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -15,23 +12,23 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.AddDbContext<DatabaseContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("MyConnection")));
+builder.Services.AddDbContext<DatabaseContext>(option => 
+ option.UseSqlServer(builder.Configuration.GetConnectionString("MyConnection")));
 
-builder.Services.AddScoped<IOrderRepository, OrderRepository>();
+builder.Services.AddScoped<IProductRepository, ProductSerivce>();
+builder.Services.AddScoped<IOrderRepository, OrderService>();
 
-builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(op =>
+
+var allowOrigins = builder.Configuration.GetSection("AllowOrigins").Get<string[]>();
+
+builder.Services.AddCors(options =>
 {
-    op.RequireHttpsMetadata = false;
-    op.SaveToken = true;
-    op.TokenValidationParameters = new TokenValidationParameters()
+    options.AddPolicy("myAppCors", policy =>
     {
-        ValidateIssuer = true,
-        ValidateAudience = true,
-        ValidAudience = builder.Configuration["Jwt:Audience"],
-        ValidIssuer = builder.Configuration["Jwt:Issuer"],
-        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"]))
-    };
+        policy.WithOrigins(allowOrigins).AllowAnyHeader().AllowAnyMethod();
+    });
 });
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -41,6 +38,8 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
+
+app.UseCors("myAppCors");
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
