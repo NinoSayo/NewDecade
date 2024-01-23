@@ -97,6 +97,7 @@ namespace NewDecade.Repositories
                     return null;
                 }
                 oldBlog.Title = blogPost.Title;
+                oldBlog.ImageUrl = blogPost.ImageUrl;
                 oldBlog.Content = blogPost.Content;
                 oldBlog.Author = blogPost.Author;
 
@@ -187,6 +188,32 @@ namespace NewDecade.Repositories
             catch
             {
                 return 0;
+            }
+        }
+
+        public async Task<Users> GetUserById(int userId)
+        {
+            try
+            {
+                var user = await db.Users.Include(u => u.Comments).FirstOrDefaultAsync(u => u.UserId == userId);
+                return user;
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
+        public async Task<IEnumerable<Comment>> GetCommentsByUserId(int userId)
+        {
+            try
+            {
+                var comments = await db.Comments.Where(c => c.UserId == userId).ToListAsync();
+                return comments;
+            }
+            catch (Exception)
+            {
+                return null;
             }
         }
     }

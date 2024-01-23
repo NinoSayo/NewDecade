@@ -16,5 +16,8 @@ namespace NewDecade.IRepositories
         Task<int> UpdateComment(Comment comment);
         Task<BlogPost> DeleteBlogPost(int blogPostId);
         Task<int> DeleteComment(int commentId);
+
+        Task<Users> GetUserById(int userId);
+        Task<IEnumerable<Comment>> GetCommentsByUserId(int userId);
     }
 }

@@ -34,6 +34,8 @@ namespace NewDecade.Models
 
         [Required]
         public DateTime RegistrationDate { get; set; }
+
+        public List<Comment> Comments { get; set; } = new List<Comment>();
     }
 }
 

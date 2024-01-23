@@ -18,6 +18,18 @@ namespace NewDecade.Data
         {
             base.OnModelCreating(modelBuilder);
 
+            modelBuilder.Entity<Comment>()
+        .HasOne(c => c.BlogPost)
+        .WithMany(bp => bp.Comments)
+        .HasForeignKey(c => c.BlogPostId)
+        .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Comment>()
+                .HasOne(c => c.Users)
+                .WithMany(u => u.Comments)
+                .HasForeignKey(c => c.UserId)
+                .OnDelete(DeleteBehavior.Cascade);
+
             modelBuilder.Entity<BlogPost>().HasData(
                new BlogPost
                {
