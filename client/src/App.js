@@ -1,23 +1,18 @@
 import React , {  } from "react";
-import './App.css';
-
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import UserIndex from './components/User/UserIndex'; // Thay thế bằng đường dẫn thật sự của Index
-import UserBlog from './components/User/UserBlog'; // Thay thế bằng đường dẫn thật sự của UserBlog
 
 
-import Header from "./components/User/Header";
-import Navbar from "./components/User/Navbar";
-import Footer from "./components/User/Footer";
-
+import AdminHeader from "./components/Admin/AdminHeader";
+import AdminMenu from "./components/Admin/AdminMenu";
+import AdminDashboard from "./components/Admin/AdminDashboard";
+import AdminFooter from "./components/Admin/AdminFooter";
 
 function App() {
   return (
     <div className="wrapper">
-     <Header/>
-     <Navbar/>
-     <UserIndex/>
-     <Footer/>
+     <AdminHeader/>
+     <AdminMenu/>
+     <AdminDashboard/>
+     <AdminFooter/>
    </div>
   );
 }

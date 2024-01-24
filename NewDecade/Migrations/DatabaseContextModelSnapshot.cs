@@ -47,14 +47,11 @@ namespace NewDecade.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<int?>("UsersUserId")
-                        .HasColumnType("int");
-
                     b.HasKey("CommentId");
 
                     b.HasIndex("BlogPostId");
 
-                    b.HasIndex("UsersUserId");
+                    b.HasIndex("UserId");
 
                     b.ToTable("Comments");
 
@@ -65,7 +62,7 @@ namespace NewDecade.Migrations
                             BlogPostId = 1,
                             CommentContent = "This is a great post!",
                             CommenterName = "Alice",
-                            DateCommented = new DateTime(2024, 1, 18, 4, 53, 7, 662, DateTimeKind.Utc).AddTicks(3350),
+                            DateCommented = new DateTime(2024, 1, 21, 4, 40, 23, 22, DateTimeKind.Utc).AddTicks(6800),
                             UserId = 1
                         },
                         new
@@ -74,7 +71,7 @@ namespace NewDecade.Migrations
                             BlogPostId = 2,
                             CommentContent = "Nice work!",
                             CommenterName = "Bob",
-                            DateCommented = new DateTime(2024, 1, 19, 4, 53, 7, 662, DateTimeKind.Utc).AddTicks(3360),
+                            DateCommented = new DateTime(2024, 1, 22, 4, 40, 23, 22, DateTimeKind.Utc).AddTicks(6810),
                             UserId = 2
                         });
                 });
@@ -93,14 +90,20 @@ namespace NewDecade.Migrations
 
                     b.Property<string>("Content")
                         .IsRequired()
+                        .HasMaxLength(5000)
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("DatePublished")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("Title")
+                    b.Property<string>("ImageUrl")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
 
                     b.HasKey("BlogPostId");
 
@@ -112,7 +115,8 @@ namespace NewDecade.Migrations
                             BlogPostId = 1,
                             Author = "John Doe",
                             Content = "This is the content of the first blog post.",
-                            DatePublished = new DateTime(2024, 1, 14, 4, 53, 7, 662, DateTimeKind.Utc).AddTicks(2850),
+                            DatePublished = new DateTime(2024, 1, 17, 4, 40, 23, 22, DateTimeKind.Utc).AddTicks(6520),
+                            ImageUrl = "sample.jpg",
                             Title = "First Blog Post"
                         },
                         new
@@ -120,7 +124,8 @@ namespace NewDecade.Migrations
                             BlogPostId = 2,
                             Author = "Jane Doe",
                             Content = "This is the content of the second blog post.",
-                            DatePublished = new DateTime(2024, 1, 16, 4, 53, 7, 662, DateTimeKind.Utc).AddTicks(2860),
+                            DatePublished = new DateTime(2024, 1, 19, 4, 40, 23, 22, DateTimeKind.Utc).AddTicks(6530),
+                            ImageUrl = "sample.jpg",
                             Title = "Second Blog Post"
                         });
                 });
@@ -214,7 +219,7 @@ namespace NewDecade.Migrations
                             LastName = "User",
                             Password = "adminpassword",
                             PhoneNumber = "123-456-7890",
-                            RegistrationDate = new DateTime(2023, 10, 21, 4, 53, 7, 662, DateTimeKind.Utc).AddTicks(3380),
+                            RegistrationDate = new DateTime(2023, 10, 24, 4, 40, 23, 22, DateTimeKind.Utc).AddTicks(6840),
                             Role = "Admin",
                             Username = "admin"
                         },
@@ -227,7 +232,7 @@ namespace NewDecade.Migrations
                             LastName = "Doe",
                             Password = "customerpassword",
                             PhoneNumber = "987-654-3210",
-                            RegistrationDate = new DateTime(2023, 11, 21, 4, 53, 7, 662, DateTimeKind.Utc).AddTicks(3390),
+                            RegistrationDate = new DateTime(2023, 11, 24, 4, 40, 23, 22, DateTimeKind.Utc).AddTicks(6850),
                             Role = "Customer",
                             Username = "customer"
                         });
@@ -242,8 +247,10 @@ namespace NewDecade.Migrations
                         .IsRequired();
 
                     b.HasOne("NewDecade.Models.Users", "Users")
-                        .WithMany()
-                        .HasForeignKey("UsersUserId");
+                        .WithMany("Comments")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("BlogPost");
 
@@ -251,6 +258,11 @@ namespace NewDecade.Migrations
                 });
 
             modelBuilder.Entity("NewDecade.Models.BlogPost", b =>
+                {
+                    b.Navigation("Comments");
+                });
+
+            modelBuilder.Entity("NewDecade.Models.Users", b =>
                 {
                     b.Navigation("Comments");
                 });

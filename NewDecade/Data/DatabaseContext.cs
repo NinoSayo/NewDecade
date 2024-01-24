@@ -11,24 +11,11 @@ namespace NewDecade.Data
         }
         public DbSet<BlogPost> BlogPosts { get; set; }
         public DbSet<Users> Users { get; set; }
-        public DbSet<Comment> Comments { get; set; }
         public DbSet<Contact> Contacts { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            modelBuilder.Entity<Comment>()
-        .HasOne(c => c.BlogPost)
-        .WithMany(bp => bp.Comments)
-        .HasForeignKey(c => c.BlogPostId)
-        .OnDelete(DeleteBehavior.Cascade);
-
-            modelBuilder.Entity<Comment>()
-                .HasOne(c => c.Users)
-                .WithMany(u => u.Comments)
-                .HasForeignKey(c => c.UserId)
-                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<BlogPost>().HasData(
                new BlogPost
@@ -38,6 +25,7 @@ namespace NewDecade.Data
                    Content = "This is the content of the first blog post.",
                    Author = "John Doe",
                    DatePublished = DateTime.UtcNow.AddDays(-7), // Published 7 days ago
+                   ImageUrl = "sample.jpg"
                },
                new BlogPost
                {
@@ -46,27 +34,8 @@ namespace NewDecade.Data
                    Content = "This is the content of the second blog post.",
                    Author = "Jane Doe",
                    DatePublished = DateTime.UtcNow.AddDays(-5), // Published 5 days ago
+                   ImageUrl = "sample.jpg"
                });
-
-            modelBuilder.Entity<Comment>().HasData(
-                new Comment
-                {
-                    CommentId = 1,
-                    CommenterName = "Alice",
-                    CommentContent = "This is a great post!",
-                    DateCommented = DateTime.UtcNow.AddDays(-3), // Commented 3 days ago
-                    BlogPostId = 1, // Replace with an existing BlogPostId from your BlogPosts table
-                    UserId = 1,
-                },
-                 new Comment
-                 {
-                     CommentId = 2,
-                     CommenterName = "Bob",
-                     CommentContent = "Nice work!",
-                     DateCommented = DateTime.UtcNow.AddDays(-2), // Commented 2 days ago
-                     BlogPostId = 2, // Replace with an existing BlogPostId from your BlogPosts table
-                     UserId = 2,
-                 });
 
             modelBuilder.Entity<Users>().HasData(
                new Users

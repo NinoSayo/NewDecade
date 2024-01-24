@@ -1,0 +1,33 @@
+{
+  "Files": [
+    {
+      "Id": "/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/wwwroot/images/26dc7dde-bf67-480d-807a-bef3165aa03a_anime.jpeg",
+      "PackagePath": "staticwebassets/images/26dc7dde-bf67-480d-807a-bef3165aa03a_anime.jpeg"
+    },
+    {
+      "Id": "/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/wwwroot/images/3a475af5-4971-4b9f-bd24-8fdb9732a96e_cat.jpeg",
+      "PackagePath": "staticwebassets/images/3a475af5-4971-4b9f-bd24-8fdb9732a96e_cat.jpeg"
+    },
+    {
+      "Id": "/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/wwwroot/images/52658f22-0912-48ea-a95c-f2da49417121_cat.jpeg",
+      "PackagePath": "staticwebassets/images/52658f22-0912-48ea-a95c-f2da49417121_cat.jpeg"
+    },
+    {
+      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.NewDecade.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.build.NewDecade.props",
+      "PackagePath": "build\\NewDecade.props"
+    },
+    {
+      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.buildMultiTargeting.NewDecade.props",
+      "PackagePath": "buildMultiTargeting\\NewDecade.props"
+    },
+    {
+      "Id": "obj/Debug/net7.0/staticwebassets/msbuild.buildTransitive.NewDecade.props",
+      "PackagePath": "buildTransitive\\NewDecade.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

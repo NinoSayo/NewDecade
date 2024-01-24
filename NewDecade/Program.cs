@@ -3,8 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using NewDecade.Data;
 using NewDecade.IRepositories;
-using NewDecade.Repositories;
-using NewDecade.Repositories.Blog;
+using NewDecade.Models;
 using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -16,10 +15,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+//builder.Services.Configure<Contact>(builder.Configuration.GetSection("SmtpConfig"));
+
 builder.Services.AddDbContext<DatabaseContext>(o => o.UseSqlServer(builder.Configuration.GetConnectionString("MyConnection")));
 
 builder.Services.AddScoped<IBlogRepository, BlogRepository>();
-builder.Services.AddScoped<ICommentRepository, CommentRepository>();
 
 var app = builder.Build();
 

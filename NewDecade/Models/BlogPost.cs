@@ -1,12 +1,14 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Http;
 
 namespace NewDecade.Models
 {
 	public class BlogPost
 	{
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BlogPostId { get; set; }
 
         [Required]
@@ -21,14 +23,13 @@ namespace NewDecade.Models
         [Required(ErrorMessage = "Please provide the author's name.")]
         public string Author { get; set; }
 
-        public DateTime DatePublished { get; set; } = DateTime.UtcNow;
+        public DateTime? DatePublished { get; set; } = DateTime.UtcNow;
 
-        public string ImageUrl { get; set; }
+        public string? ImageUrl { get; set; }
 
         [NotMapped]
-        public IFormFile UploadFile { get; set; }
+        public IFormFile? UploadFile { get; set; }
 
-        public List<Comment> Comments { get; set; } = new List<Comment>();
     }
 }
 

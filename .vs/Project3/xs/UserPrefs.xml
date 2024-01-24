@@ -1,45 +1,43 @@
 ﻿<Properties StartupConfiguration="{A92D3E59-99C5-431C-A45C-5AAADEB86BFF}|https">
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore>
+      <Breakpoint file="/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/Controllers/BlogController.cs" relfile="NewDecade/Controllers/BlogController.cs" line="82" column="1" />
+      <Breakpoint file="/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/Repositories/BlogRepository.cs" relfile="NewDecade/Repositories/BlogRepository.cs" line="70" column="1" />
+    </BreakpointStore>
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.ItemProperties.NewDecade PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="NewDecade/Repositories/CommentRepository.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="NewDecade/Services/ImailService.cs">
     <Files>
-      <File FileName="NewDecade/Controllers/BlogController.cs" Line="15" Column="9" NotebookId="1" />
-      <File FileName="NewDecade/Repositories/BlogRepository.cs" Line="111" Column="10" NotebookId="1" />
-      <File FileName="NewDecade/Models/BlogPost.cs" Line="10" Column="24" NotebookId="1" />
-      <File FileName="NewDecade/IRepositories/IBlogRepository.cs" Line="21" Column="1" NotebookId="1" />
-      <File FileName="NewDecade/Models/Comment.cs" Line="25" Column="37" NotebookId="1" />
-      <File FileName="NewDecade/Models/Users.cs" Line="9" Column="26" NotebookId="1" />
-      <File FileName="NewDecade/IRepositories/ICommentRepository.cs" Line="13" Column="48" NotebookId="1" />
-      <File FileName="NewDecade/Repositories/CommentRepository.cs" Line="69" Column="14" NotebookId="1" />
+      <File FileName="NewDecade/appsettings.json" />
+      <File FileName="NewDecade/Controllers/BlogController.cs" Line="81" Column="64" />
+      <File FileName="NewDecade/Models/BlogPost.cs" />
+      <File FileName="NewDecade/Program.cs" />
+      <File FileName="NewDecade/Data/DatabaseContext.cs" />
+      <File FileName="NewDecade/Models/Users.cs" />
+      <File FileName="NewDecade/Repositories/IContactRepository.cs" Line="1" Column="1" />
+      <File FileName="NewDecade/Repositories/IBlogRepository.cs" Line="15" Column="2" />
+      <File FileName="NewDecade/Controllers/ContactController.cs" />
+      <File FileName="NewDecade/Properties/launchSettings.json" />
+      <File FileName="NewDecade/Models/Contact.cs" Line="20" Column="1" />
+      <File FileName="NewDecade/Repositories/BlogRepository.cs" Line="83" Column="5" />
+      <File FileName="NewDecade/Services/ImaService.cs" Line="6" Column="15" />
     </Files>
-    <FloatingWindows>
-      <FloatingWindow WindowId="1" X="578" Y="93" Width="1093" Height="782">
-        <Files>
-          <File FileName="NewDecade/Repositories/ContactRepository.cs" Line="1" Column="1" />
-        </Files>
-      </FloatingWindow>
-    </FloatingWindows>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
           <Node name="Project3" expanded="True">
             <Node name="NewDecade">
               <Node name="Controllers" expanded="True" />
-              <Node name="Data" expanded="True" />
-              <Node name="IRepositories" expanded="True" />
               <Node name="Models" expanded="True" />
-              <Node name="Repositories" expanded="True">
-                <Node name="CommentRepository.cs" selected="True" />
-              </Node>
+              <Node name="Services" expanded="True" />
+              <Node name="wwwroot" expanded="True" />
             </Node>
           </Node>
         </State>
       </Pad>
     </Pads>
   </MonoDevelop.Ide.Workbench>
-  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
-  <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore />
-  </MonoDevelop.Ide.DebuggingService.Breakpoints>
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
 </Properties>

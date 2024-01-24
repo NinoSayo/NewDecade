@@ -1,221 +1,152 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using NewDecade.Data;
 using NewDecade.IRepositories;
 using NewDecade.Models;
 
-namespace NewDecade.Repositories
+public class BlogRepository : IBlogRepository
 {
-	public class BlogRepository : IBlogRepository
-	{
-        private readonly DatabaseContext db;
+    private readonly DatabaseContext _context;
+    private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public BlogRepository(DatabaseContext db)
+    public BlogRepository(DatabaseContext context, IWebHostEnvironment webHostEnvironment)
+    {
+        this._context = context;
+        this._webHostEnvironment = webHostEnvironment;
+
+    }
+
+    public async Task<IEnumerable<BlogPost>> GetAllBlogPosts()
+    {
+        try
         {
-            this.db = db;
+            return await _context.BlogPosts.ToListAsync();
         }
-
-        public async Task<BlogPost> AddBlogPost(BlogPost blogPost)
+        catch (Exception ex)
         {
-            try
-            {
-                db.BlogPosts.Add(blogPost);
-                var result =  await db.SaveChangesAsync();
-                if(result == 1)
-                {
-                    return blogPost;
-                }
-                return null;
-            }
-            catch(Exception)
-            {
-                return null;
-            }
-        }
-
-        public async Task<BlogPost> DeleteBlogPost(int blogPostId)
-        {
-            var blog = await GetBlogPostById(blogPostId);
-            if(blog == null)
-            {
-                return null;
-            }
-            else
-            {
-                try
-                {
-                    db.BlogPosts.Remove(blog);
-                    var result = await db.SaveChangesAsync();
-                    if(result == 1)
-                    {
-                        return blog;
-                    }
-                    return null;
-                }
-                catch
-                {
-                    return null;
-                }
-            }
-        }
-       
-
-        public async Task<IEnumerable<BlogPost>> GetAllBlogPosts()
-        {
-            try
-            {
-                var list = await db.BlogPosts.ToListAsync();
-                return list;
-            }
-            catch
-            {
-                return null;
-            }
-            
-        }
-
-        public async Task<BlogPost> GetBlogPostById(int postId)
-        {
-            try
-            {
-                var blog = await db.BlogPosts.SingleOrDefaultAsync(b => b.BlogPostId == postId);
-                return blog;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        public async Task<BlogPost> UpdateBlogPost(BlogPost blogPost)
-        {
-            try
-            {
-                var oldBlog = await GetBlogPostById(blogPost.BlogPostId);
-                if (oldBlog == null)
-                {
-                    return null;
-                }
-                oldBlog.Title = blogPost.Title;
-                oldBlog.ImageUrl = blogPost.ImageUrl;
-                oldBlog.Content = blogPost.Content;
-                oldBlog.Author = blogPost.Author;
-
-                var result = await db.SaveChangesAsync();
-                if (result == 1)
-                {
-                    return oldBlog;
-                }
-                return null;
-            }
-            catch { return null; }
-        }
-
-        public async Task<Comment> GetCommentById(int commentId)
-        {
-            try
-            {
-                var comment = await db.Comments.SingleOrDefaultAsync(c => c.CommentId == commentId);
-                return comment;
-            }
-            catch (Exception)
-            {
-                return null;
-            }   
-        }
-
-        public async Task<IEnumerable<Comment>> GetCommentsForBlogPost(int blogPostId)
-        {
-            try
-            {
-                var comments = await db.Comments.Where(c => c.BlogPostId == blogPostId).ToListAsync();
-                return comments;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        public async Task<int> UpdateComment(Comment comment)
-        {
-            try
-            {
-                var existingComment = await db.Comments.FindAsync(comment.CommentId);
-                if (existingComment == null)
-                {
-                    return 0; // Hoặc bạn có thể ném một ngoại lệ tùy thuộc vào yêu cầu
-                }
-
-                existingComment.CommenterName = comment.CommenterName;
-                existingComment.CommentContent = comment.CommentContent;
-
-                return await db.SaveChangesAsync();
-            }
-            catch
-            {
-                return 0;
-            }
-        }
-
-        public async Task<Comment> AddComment(Comment comment)
-        {
-            try
-            {
-                db.Comments.Add(comment);
-                await db.SaveChangesAsync();
-                return comment; // Trả về comment đã được thêm thành công
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
-        public async Task<int> DeleteComment(int commentId)
-        {
-            try
-            {
-                var comment = await db.Comments.FindAsync(commentId);
-                if (comment == null)
-                {
-                    return 0;
-                }
-
-                db.Comments.Remove(comment);
-                return await db.SaveChangesAsync();
-            }
-            catch
-            {
-                return 0;
-            }
-        }
-
-        public async Task<Users> GetUserById(int userId)
-        {
-            try
-            {
-                var user = await db.Users.Include(u => u.Comments).FirstOrDefaultAsync(u => u.UserId == userId);
-                return user;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        public async Task<IEnumerable<Comment>> GetCommentsByUserId(int userId)
-        {
-            try
-            {
-                var comments = await db.Comments.Where(c => c.UserId == userId).ToListAsync();
-                return comments;
-            }
-            catch (Exception)
-            {
-                return null;
-            }
+            HandleException(ex, "Error getting all blog posts");
+            return null;
         }
     }
-}
 
+    public async Task<BlogPost> GetBlogPostById(int blogPostId)
+    {
+        try
+        {
+            return await _context.BlogPosts.FindAsync(blogPostId);
+        }
+        catch (Exception ex)
+        {
+            HandleException(ex, "Error getting blog post by ID");
+            return null;
+        }
+    }
+
+    public async Task<int> AddBlogPost(BlogPost blogPost)
+    {
+        try
+        {
+            // Xử lý upload ảnh
+            if (blogPost.UploadFile != null)
+            {
+                blogPost.ImageUrl = await UploadImage(blogPost.UploadFile);
+            }
+
+            _context.BlogPosts.Add(blogPost);
+            await _context.SaveChangesAsync();
+            return blogPost.BlogPostId;
+        }
+        catch (Exception ex)
+        {
+            HandleException(ex, "Error adding blog post");
+            return 0;
+        }
+    }
+
+    public async Task<int> UpdateBlogPost(BlogPost blogPost)
+    {
+        try
+        {
+            var existingPost = await GetBlogPostById(blogPost.BlogPostId);
+
+            if (existingPost == null)
+            {
+                return 0;
+                throw new InvalidOperationException("Blog post not found");
+            }
+
+            // Xử lý upload ảnh
+            if (blogPost.UploadFile != null)
+            {
+                existingPost.ImageUrl = await UploadImage(blogPost.UploadFile);
+            }
+
+            existingPost.Title = blogPost.Title;
+            existingPost.Content = blogPost.Content;
+            existingPost.Author = blogPost.Author;
+            existingPost.DatePublished = blogPost.DatePublished;
+
+            await _context.SaveChangesAsync();
+            return existingPost.BlogPostId;
+        }
+        catch (Exception ex)
+        {
+            HandleException(ex, "Error updating blog post");
+            return 0;
+        }
+    }
+
+    public async Task<int> DeleteBlogPost(int blogPostId)
+    {
+        try
+        {
+            var blogPost = await _context.BlogPosts.FindAsync(blogPostId);
+
+            if (blogPost == null)
+            {
+                throw new InvalidOperationException("Blog post not found");
+            }
+
+            _context.BlogPosts.Remove(blogPost);
+            await _context.SaveChangesAsync();
+            return blogPostId;
+        }
+        catch (Exception ex)
+        {
+            HandleException(ex, "Error deleting blog post");
+            return 0;
+        }
+    }
+
+    private async Task<string> UploadImage(IFormFile file)
+    {
+        try
+        {
+            // Lấy đường dẫn thư mục wwwroot/images bằng cách sử dụng IWebHostEnvironment
+            var uploadsFolder = Path.Combine(_webHostEnvironment.WebRootPath, "images");
+            var uniqueFileName = Guid.NewGuid().ToString() + "_" + file.FileName;
+            var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+            using (var fileStream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.CopyToAsync(fileStream);
+            }
+
+            // Trả về URL
+            return $"/images/{uniqueFileName}";
+        }
+        catch (Exception ex)
+        {
+            throw new Exception("Error uploading image", ex);
+        }
+    }
+
+    private void HandleException(Exception ex, string message)
+    {
+        Console.WriteLine($"{message}: {ex.Message}");
+    }
+}
