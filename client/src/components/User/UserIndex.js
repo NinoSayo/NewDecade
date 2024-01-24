@@ -1,8 +1,5 @@
 import React from 'react';
 import '../../styles/User/css/style.css'; // Import stylesheet từ template của bạn
-import Header from './Header';
-import Navbar from './Navbar';
-import Footer from './Footer';
 
 const UserIndex = () => {
   return (

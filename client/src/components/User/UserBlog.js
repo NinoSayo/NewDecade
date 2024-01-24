@@ -1,8 +1,5 @@
 import React from 'react';
 import '../../styles/User/css/style.css'; // Import stylesheet từ template của bạn
-import Header from './Header';
-import Navbar from './Navbar';
-import Footer from './Footer';
 
 const UserBlog = () => {
   return (
@@ -16,7 +13,7 @@ const UserBlog = () => {
     </div>
     <div className="owl-carousel blog-carousel wow fadeInUp" data-wow-delay=".5s">
       <div className="blog-item">
-        <img src="img/blog-1.jpg" className="img-fluid w-100 rounded-top" alt />
+        <img src="img/blog-1.jpg" className="img-fluid w-100 rounded-top" alt="" />
         <div className="rounded-bottom bg-light">
           <div className="d-flex justify-content-between p-4 pb-2">
             <span className="pe-2 text-dark"><i className="fa fa-user me-2" />By Admin</span>
@@ -27,13 +24,13 @@ const UserBlog = () => {
             <p>Lorem ipsum dolor sit amet consectur adip sed eiusmod tempor.</p>
           </div>
           <div className="p-4 py-2 d-flex justify-content-between bg-primary rounded-bottom blog-btn">
-            <a href="#" type="button" className="btn btn-primary border-0">Learn More</a>
-            <a href="#" className="my-auto btn-primary border-0"><i className="fa fa-comments me-2" />23 Comments</a>
+            <a href="fake_url" type="button" className="btn btn-primary border-0">Learn More</a>
+            <a href="fake_url" className="my-auto btn-primary border-0"><i className="fa fa-comments me-2" />23 Comments</a>
           </div>
         </div>
       </div>
       <div className="blog-item">
-        <img src="img/blog-3.jpg" className="img-fluid w-100 rounded-top" alt />
+        <img src="img/blog-3.jpg" className="img-fluid w-100 rounded-top" alt="" />
         <div className="rounded-bottom bg-light">
           <div className="d-flex justify-content-between p-4 pb-2">
             <span className="pe-2 text-dark"><i className="fa fa-user me-2" />By Admin</span>
@@ -44,13 +41,13 @@ const UserBlog = () => {
             <p>Lorem ipsum dolor sit amet consectur adip sed eiusmod tempor.</p>
           </div>
           <div className="p-4 py-2 d-flex justify-content-between bg-primary rounded-bottom blog-btn">
-            <a href="#" type="button" className="btn btn-primary border-0">Learn More</a>
-            <a href="#" className="my-auto text-dark"><i className="fa fa-comments me-2" />23 Comments</a>
+            <a href="fake_url" type="button" className="btn btn-primary border-0">Learn More</a>
+            <a href="fake_url" className="my-auto text-dark"><i className="fa fa-comments me-2" />23 Comments</a>
           </div>
         </div>
       </div>
       <div className="blog-item">
-        <img src="img/blog-2.jpg" className="img-fluid w-100 rounded-top" alt />
+        <img src="img/blog-2.jpg" className="img-fluid w-100 rounded-top" alt="" />
         <div className="rounded-bottom bg-light">
           <div className="d-flex justify-content-between p-4 pb-2">
             <span className="pe-2 text-dark"><i className="fa fa-user me-2" />By Admin</span>
@@ -61,13 +58,13 @@ const UserBlog = () => {
             <p>Lorem ipsum dolor sit amet consectur adip sed eiusmod tempor.</p>
           </div>
           <div className="p-4 py-2 d-flex justify-content-between bg-primary rounded-bottom blog-btn">
-            <a href="#" type="button" className="btn btn-primary border-0">Learn More</a>
-            <a href="#" className="my-auto text-dark"><i className="fa fa-comments me-2" />23 Comments</a>
+            <a href="fake_url" type="button" className="btn btn-primary border-0">Learn More</a>
+            <a href="fake_url" className="my-auto text-dark"><i className="fa fa-comments me-2" />23 Comments</a>
           </div>
         </div>
       </div>
       <div className="blog-item">
-        <img src="img/blog-1.jpg" className="img-fluid w-100 rounded-top" alt />
+        <img src="img/blog-1.jpg" className="img-fluid w-100 rounded-top" alt="" />
         <div className="rounded-bottom bg-light">
           <div className="d-flex justify-content-between p-4 pb-2">
             <span className="pe-2 text-dark"><i className="fa fa-user me-2" />By Admin</span>
@@ -78,8 +75,8 @@ const UserBlog = () => {
             <p>Lorem ipsum dolor sit amet consectur adip sed eiusmod tempor.</p>
           </div>
           <div className="p-4 py-2 d-flex justify-content-between bg-primary rounded-bottom blog-btn">
-            <a href="#" type="button" className="btn btn-primary border-0">Learn More</a>
-            <a href="#" className="my-auto text-dark"><i className="fa fa-comments me-2" />23 Comments</a>
+            <a href="fake_url" type="button" className="btn btn-primary border-0">Learn More</a>
+            <a href="fake_url" className="my-auto text-dark"><i className="fa fa-comments me-2" />23 Comments</a>
           </div>
         </div>
       </div>

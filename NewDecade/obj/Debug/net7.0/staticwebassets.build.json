@@ -1,11 +1,71 @@
 {
   "Version": 1,
-  "Hash": "47qiKudPXhqh3bggyyfOFfnkIwkZ/n1qMEfqPbAbLeY=",
+  "Hash": "oPNTRAqMxIbR/XoOV+DtaDsJm6Wy/SAfSt8n1D8SIb8=",
   "Source": "NewDecade",
   "BasePath": "_content/NewDecade",
   "Mode": "Default",
   "ManifestType": "Build",
   "ReferencedProjectsConfiguration": [],
-  "DiscoveryPatterns": [],
-  "Assets": []
+  "DiscoveryPatterns": [
+    {
+      "Name": "NewDecade/wwwroot",
+      "Source": "NewDecade",
+      "ContentRoot": "/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/wwwroot/",
+      "BasePath": "_content/NewDecade",
+      "Pattern": "**"
+    }
+  ],
+  "Assets": [
+    {
+      "Identity": "/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/wwwroot/images/26dc7dde-bf67-480d-807a-bef3165aa03a_anime.jpeg",
+      "SourceId": "NewDecade",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/wwwroot/",
+      "BasePath": "_content/NewDecade",
+      "RelativePath": "images/26dc7dde-bf67-480d-807a-bef3165aa03a_anime.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/26dc7dde-bf67-480d-807a-bef3165aa03a_anime.jpeg"
+    },
+    {
+      "Identity": "/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/wwwroot/images/3a475af5-4971-4b9f-bd24-8fdb9732a96e_cat.jpeg",
+      "SourceId": "NewDecade",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/wwwroot/",
+      "BasePath": "_content/NewDecade",
+      "RelativePath": "images/3a475af5-4971-4b9f-bd24-8fdb9732a96e_cat.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/3a475af5-4971-4b9f-bd24-8fdb9732a96e_cat.jpeg"
+    },
+    {
+      "Identity": "/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/wwwroot/images/52658f22-0912-48ea-a95c-f2da49417121_cat.jpeg",
+      "SourceId": "NewDecade",
+      "SourceType": "Discovered",
+      "ContentRoot": "/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/wwwroot/",
+      "BasePath": "_content/NewDecade",
+      "RelativePath": "images/52658f22-0912-48ea-a95c-f2da49417121_cat.jpeg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot/images/52658f22-0912-48ea-a95c-f2da49417121_cat.jpeg"
+    }
+  ]
 }
