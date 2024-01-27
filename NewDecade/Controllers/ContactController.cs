@@ -56,7 +56,7 @@ namespace NewDecade.Controllers
 
 
         private async Task SendMailAsync(Contact contact)
-        { 
+        {
             try
             {
                 string smtpServer = "smtp.gmail.com";
@@ -64,14 +64,14 @@ namespace NewDecade.Controllers
                 string smtpUsername = "";
                 string smtpPassword = "";
 
-                string toEmail = "";
+                string toEmail = contact.Email;
 
                 using (MailMessage mail = new MailMessage())
                 {
-                    mail.From = new MailAddress(smtpUsername);
+                    mail.From = new MailAddress(contact.Email); // Sử dụng địa chỉ email của người gửi
                     mail.To.Add(toEmail);
-                    mail.Subject = $"New Contact: {contact.Subject}";
-                    mail.Body = $"Name: {contact.FullName}\nEmail: {contact.Email}\nMessage: {contact.Message}";
+                    mail.Subject = $"{contact.Subject}";
+                    mail.Body = $"{contact.Message}";
 
                     using (SmtpClient smtpClient = new SmtpClient(smtpServer, smtpPort))
                     {

@@ -8,7 +8,7 @@ function AdminMenu() {
 <aside className="main-sidebar sidebar-dark-primary elevation-4">
   {/* Brand Logo */}
   <a href="index3.html" className="brand-link">
-    <img src="dist/img/AdminLTELogo.png" alt="AdminLTE Logo" className="brand-image img-circle elevation-3" style={{opacity: '.8'}} />
+    <img src="dist/img/AdminLTELogo.png" className="brand-image img-circle elevation-3" style={{opacity: '.8'}} />
     <span className="brand-text font-weight-light">Admin</span>
   </a>
   {/* Sidebar */}
@@ -16,10 +16,10 @@ function AdminMenu() {
     {/* Sidebar user panel (optional) */}
     <div className="user-panel mt-3 pb-3 mb-3 d-flex">
       <div className="image">
-        <img src="dist/img/user2-160x160.jpg" className="img-circle elevation-2" alt="User" />
+        <img src="" className="img-circle elevation-2" alt="User" />
       </div>
       <div className="info">
-        <a href="fake_url" className="d-block">Alexander Pierce</a>
+        <a href="fake_url" className="d-block">Group 3</a>
       </div>
     </div>
     {/* SidebarSearch Form */}
@@ -43,29 +43,9 @@ function AdminMenu() {
             <i className="nav-icon fas fa-tachometer-alt" />
             <p>
               Dashboard
-              <i className="right fas fa-angle-left" />
+              <i className="right " />
             </p>
           </a>
-          <ul className="nav nav-treeview">
-            <li className="nav-item">
-              <a href="./index.html" className="nav-link">
-                <i className="far fa-circle nav-icon" />
-                <p>Dashboard v1</p>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="./index2.html" className="nav-link active">
-                <i className="far fa-circle nav-icon" />
-                <p>Dashboard v2</p>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="./index3.html" className="nav-link">
-                <i className="far fa-circle nav-icon" />
-                <p>Dashboard v3</p>
-              </a>
-            </li>
-          </ul>
         </li>
         <li className="nav-item">
           <a href="pages/widgets.html" className="nav-link">
@@ -76,101 +56,7 @@ function AdminMenu() {
             </p>
           </a>
         </li>
-        <li className="nav-item">
-          <a href="fake_url" className="nav-link">
-            <i className="nav-icon fas fa-copy" />
-            <p>
-              Layout Options
-              <i className="fas fa-angle-left right" />
-              <span className="badge badge-info right">6</span>
-            </p>
-          </a>
-          <ul className="nav nav-treeview">
-            <li className="nav-item">
-              <a href="pages/layout/top-nav.html" className="nav-link">
-                <i className="far fa-circle nav-icon" />
-                <p>Top Navigation</p>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="pages/layout/top-nav-sidebar.html" className="nav-link">
-                <i className="far fa-circle nav-icon" />
-                <p>Top Navigation + Sidebar</p>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="pages/layout/boxed.html" className="nav-link">
-                <i className="far fa-circle nav-icon" />
-                <p>Boxed</p>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="pages/layout/fixed-sidebar.html" className="nav-link">
-                <i className="far fa-circle nav-icon" />
-                <p>Fixed Sidebar</p>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="pages/layout/fixed-sidebar-custom.html" className="nav-link">
-                <i className="far fa-circle nav-icon" />
-                <p>Fixed Sidebar <small>+ Custom Area</small></p>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="pages/layout/fixed-topnav.html" className="nav-link">
-                <i className="far fa-circle nav-icon" />
-                <p>Fixed Navbar</p>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="pages/layout/fixed-footer.html" className="nav-link">
-                <i className="far fa-circle nav-icon" />
-                <p>Fixed Footer</p>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="pages/layout/collapsed-sidebar.html" className="nav-link">
-                <i className="far fa-circle nav-icon" />
-                <p>Collapsed Sidebar</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li className="nav-item">
-          <a href="fake_url" className="nav-link">
-            <i className="nav-icon fas fa-chart-pie" />
-            <p>
-              Charts
-              <i className="right fas fa-angle-left" />
-            </p>
-          </a>
-          <ul className="nav nav-treeview">
-            <li className="nav-item">
-              <a href="pages/charts/chartjs.html" className="nav-link">
-                <i className="far fa-circle nav-icon" />
-                <p>ChartJS</p>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="pages/charts/flot.html" className="nav-link">
-                <i className="far fa-circle nav-icon" />
-                <p>Flot</p>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="pages/charts/inline.html" className="nav-link">
-                <i className="far fa-circle nav-icon" />
-                <p>Inline</p>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="pages/charts/uplot.html" className="nav-link">
-                <i className="far fa-circle nav-icon" />
-                <p>uPlot</p>
-              </a>
-            </li>
-          </ul>
-        </li>
+       
         <li className="nav-item">
           <a href="fake_url" className="nav-link">
             <i className="nav-icon fas fa-tree" />
@@ -571,103 +457,6 @@ function AdminMenu() {
               </a>
             </li>
           </ul>
-        </li>
-        <li className="nav-header">MISCELLANEOUS</li>
-        <li className="nav-item">
-          <a href="iframe.html" className="nav-link">
-            <i className="nav-icon fas fa-ellipsis-h" />
-            <p>Tabbed IFrame Plugin</p>
-          </a>
-        </li>
-        <li className="nav-item">
-          <a href="https://adminlte.io/docs/3.1/" className="nav-link">
-            <i className="nav-icon fas fa-file" />
-            <p>Documentation</p>
-          </a>
-        </li>
-        <li className="nav-header">MULTI LEVEL EXAMPLE</li>
-        <li className="nav-item">
-          <a href="fake_url" className="nav-link">
-            <i className="fas fa-circle nav-icon" />
-            <p>Level 1</p>
-          </a>
-        </li>
-        <li className="nav-item">
-          <a href="fake_url" className="nav-link">
-            <i className="nav-icon fas fa-circle" />
-            <p>
-              Level 1
-              <i className="right fas fa-angle-left" />
-            </p>
-          </a>
-          <ul className="nav nav-treeview">
-            <li className="nav-item">
-              <a href="fake_url" className="nav-link">
-                <i className="far fa-circle nav-icon" />
-                <p>Level 2</p>
-              </a>
-            </li>
-            <li className="nav-item">
-              <a href="fake_url" className="nav-link">
-                <i className="far fa-circle nav-icon" />
-                <p>
-                  Level 2
-                  <i className="right fas fa-angle-left" />
-                </p>
-              </a>
-              <ul className="nav nav-treeview">
-                <li className="nav-item">
-                  <a href="fake_url" className="nav-link">
-                    <i className="far fa-dot-circle nav-icon" />
-                    <p>Level 3</p>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a href="fake_url" className="nav-link">
-                    <i className="far fa-dot-circle nav-icon" />
-                    <p>Level 3</p>
-                  </a>
-                </li>
-                <li className="nav-item">
-                  <a href="fake_url" className="nav-link">
-                    <i className="far fa-dot-circle nav-icon" />
-                    <p>Level 3</p>
-                  </a>
-                </li>
-              </ul>
-            </li>
-            <li className="nav-item">
-              <a href="fake_url" className="nav-link">
-                <i className="far fa-circle nav-icon" />
-                <p>Level 2</p>
-              </a>
-            </li>
-          </ul>
-        </li>
-        <li className="nav-item">
-          <a href="fake_url" className="nav-link">
-            <i className="fas fa-circle nav-icon" />
-            <p>Level 1</p>
-          </a>
-        </li>
-        <li className="nav-header">LABELS</li>
-        <li className="nav-item">
-          <a href="fake_url" className="nav-link">
-            <i className="nav-icon far fa-circle text-danger" />
-            <p className="text">Important</p>
-          </a>
-        </li>
-        <li className="nav-item">
-          <a href="fake_url" className="nav-link">
-            <i className="nav-icon far fa-circle text-warning" />
-            <p>Warning</p>
-          </a>
-        </li>
-        <li className="nav-item">
-          <a href="fake_url" className="nav-link">
-            <i className="nav-icon far fa-circle text-info" />
-            <p>Informational</p>
-          </a>
         </li>
       </ul>
     </nav>
