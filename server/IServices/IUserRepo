@@ -1,0 +1,21 @@
+using Project3.Models;
+
+namespace Project3.IServices
+{
+    public interface IUserRepo
+    {
+        Task<User> Authenticate(UserLogin userLogin);
+        Task<string> GenerateToken(User user);
+        Task<IEnumerable<User>> GetAllUsers();
+        Task<User> CreateUser(User user);
+        Task<User> EditUser(User user);
+        Task<bool> DeleteUser(int id);
+        Task<IEnumerable<User>> SearchUser(string username);
+        Task<User> ForgotPassword(string username, string password);
+        Task<User> GetUserById(int id);
+        Task<User> Logout(int id);
+        Task<bool> ConfirmEmail(int userId, string confirmationCode);
+        Task<bool> UploadAvatar(int userId, IFormFile avatarFile);
+        Task<User> GetUserByUsername(string username);
+    }
+}
