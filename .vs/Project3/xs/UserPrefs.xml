@@ -1,38 +1,33 @@
 ﻿<Properties StartupConfiguration="{A92D3E59-99C5-431C-A45C-5AAADEB86BFF}|https">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
-    <BreakpointStore>
-      <Breakpoint file="/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/Controllers/BlogController.cs" relfile="NewDecade/Controllers/BlogController.cs" line="82" column="1" />
-      <Breakpoint file="/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/Repositories/BlogRepository.cs" relfile="NewDecade/Repositories/BlogRepository.cs" line="70" column="1" />
-    </BreakpointStore>
+    <BreakpointStore />
   </MonoDevelop.Ide.DebuggingService.Breakpoints>
   <MonoDevelop.Ide.ItemProperties.NewDecade PreferredExecutionTarget="/Applications/Google Chrome.app" />
-  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
-  <MultiItemStartupConfigurations />
-  <MonoDevelop.Ide.Workbench ActiveDocument="NewDecade/Services/ImailService.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="NewDecade/Controllers/ContactController.cs">
     <Files>
-      <File FileName="NewDecade/appsettings.json" />
-      <File FileName="NewDecade/Controllers/BlogController.cs" Line="81" Column="64" />
-      <File FileName="NewDecade/Models/BlogPost.cs" />
-      <File FileName="NewDecade/Program.cs" />
-      <File FileName="NewDecade/Data/DatabaseContext.cs" />
-      <File FileName="NewDecade/Models/Users.cs" />
-      <File FileName="NewDecade/Repositories/IContactRepository.cs" Line="1" Column="1" />
-      <File FileName="NewDecade/Repositories/IBlogRepository.cs" Line="15" Column="2" />
-      <File FileName="NewDecade/Controllers/ContactController.cs" />
-      <File FileName="NewDecade/Properties/launchSettings.json" />
-      <File FileName="NewDecade/Models/Contact.cs" Line="20" Column="1" />
-      <File FileName="NewDecade/Repositories/BlogRepository.cs" Line="83" Column="5" />
-      <File FileName="NewDecade/Services/ImaService.cs" Line="6" Column="15" />
+      <File FileName="NewDecade/Models/Contact.cs" />
+      <File FileName="NewDecade/Controllers/ContactController.cs" Line="71" Column="49" />
+      <File FileName="NewDecade/appsettings.json" Line="17" Column="1" />
+      <File FileName="NewDecade/Program.cs" Line="30" Column="71" />
+      <File FileName="NewDecade/Controllers/BlogController.cs" Line="74" Column="33" />
+      <File FileName="NewDecade/Models/BlogPost.cs" Line="10" Column="14" />
+      <File FileName="NewDecade/Repositories/IBlogRepository.cs" Line="16" Column="1" />
+      <File FileName="NewDecade/Repositories/BlogRepository.cs" Line="33" Column="10" />
+      <File FileName="NewDecade/Data/DatabaseContext.cs" Line="46" Column="43" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
         <State name="__root__">
-          <Node name="Project3" expanded="True">
+          <Node name="Project3">
             <Node name="NewDecade">
-              <Node name="Controllers" expanded="True" />
-              <Node name="Models" expanded="True" />
-              <Node name="Services" expanded="True" />
+              <Node name="Dependencies" expanded="True" />
+              <Node name="Controllers">
+                <Node name="ContactController.cs" selected="True" />
+              </Node>
+              <Node name="Repositories" expanded="True" />
               <Node name="wwwroot" expanded="True" />
             </Node>
           </Node>

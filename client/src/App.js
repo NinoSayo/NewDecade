@@ -1,5 +1,5 @@
 import React , { useState, useEffect } from "react";
-import { Link, Route , Routes} from 'react-router-dom';
+import { Route , Routes} from 'react-router-dom';
 import axios from 'axios';
 
 import AdminHeader from "./components/Admin/AdminHeader";
@@ -8,49 +8,37 @@ import AdminDashboard from "./components/Admin/AdminDashboard";
 import AdminFooter from "./components/Admin/AdminFooter";
 import BlogList from "./components/Admin/BlogList";
 import CreateBlog from "./components/Admin/CreateBlog";
+import AdminContact from "./components/Admin/AdminContact";
+import AdminCompose from "./components/Admin/AdminCompose";
+import AdminReadMail from "./components/Admin/AdminReadMail";
+import AdminCalendar from "./components/Admin/AdminCalendar";
+import AdminTable from "./components/Admin/AdminTable";
+import LockScreen from "./components/Admin/LockScreen";
+import TodoList from "./components/Admin/Todolist";
+import Widgets from "./components/Admin/Widgets";
 
 
 function App() {
   const [blogs, setBlogs] = useState([]);
   const [loading, setLoading]= useState(true);
 
-  useEffect(()=>{
-    const fetchData = async()=>{
-      try{
-      const response = await axios.get('https://localhost:7287/api/blog/');
-      setBlogs(response.data)
-    }catch(error){
-      console.log('Error fethcing data', error);
-    }finally{
-      setLoading(false)
-    }
-  };
-  fetchData();
-  }, []);
-
-  const handleCreate = async(newBlog)=>{
-    try{
-      const response = await axios.post('https://localhost:7287/api/blog/', newBlog);   
-     }catch(error){
-      console.error("error create student", error)
-     }
-  }
-
-  const handleDelete = async(id)=>{
-    try{
-      const response = await axios.post(`https://localhost:7287/api/blog/${id}`);   
-      setBlogs(blogs.filter(b => b.id != id));
-     }catch(error){
-      console.error("error create student", error)
-     }
-  }
-
   return (
     <div className="wrapper">
      <AdminHeader/>
      <AdminMenu/>
-     <AdminDashboard/>
-     <BlogList/>
+     <Routes>
+        <Route path="/" element={<AdminDashboard />} />
+        <Route path="/blogs" element={<BlogList blogs={blogs}/>} />       
+        <Route path="/create-blog" element={<CreateBlog />} />
+        <Route path="/contacts" element={<AdminContact />}/>
+        <Route path="/compose" element={<AdminCompose />}/>
+        <Route path="/read-mail" element={<AdminReadMail />}/>
+        <Route path="/calendar" element={<AdminCalendar />}/>
+        <Route path="/table" element={<AdminTable />}/>
+        <Route path="/lock" element={<LockScreen />}/>
+        <Route path="/todo" element={<TodoList />}/>
+        <Route path="/widget" element={<Widgets />}/>
+      </Routes>
      <AdminFooter/>
    </div>
   );

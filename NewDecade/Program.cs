@@ -21,6 +21,16 @@ builder.Services.AddDbContext<DatabaseContext>(o => o.UseSqlServer(builder.Confi
 
 builder.Services.AddScoped<IBlogRepository, BlogRepository>();
 
+var listHttp = builder.Configuration.GetSection("AllowOrigins").Get<string[]>();
+
+builder.Services.AddCors(otp =>
+{
+    otp.AddPolicy("MyCors", policy =>
+    {
+        policy.WithOrigins(listHttp).AllowAnyMethod().AllowAnyHeader().AllowCredentials();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -31,6 +41,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseCors("MyCors");
 
 app.UseAuthorization();
 

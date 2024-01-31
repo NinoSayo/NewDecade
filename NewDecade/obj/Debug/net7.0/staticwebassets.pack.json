@@ -5,12 +5,24 @@
       "PackagePath": "staticwebassets/images/26dc7dde-bf67-480d-807a-bef3165aa03a_anime.jpeg"
     },
     {
+      "Id": "/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/wwwroot/images/3385bcdf-ae1f-4d16-b927-584dec835b61_hinh3.jpeg",
+      "PackagePath": "staticwebassets/images/3385bcdf-ae1f-4d16-b927-584dec835b61_hinh3.jpeg"
+    },
+    {
       "Id": "/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/wwwroot/images/3a475af5-4971-4b9f-bd24-8fdb9732a96e_cat.jpeg",
       "PackagePath": "staticwebassets/images/3a475af5-4971-4b9f-bd24-8fdb9732a96e_cat.jpeg"
     },
     {
       "Id": "/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/wwwroot/images/52658f22-0912-48ea-a95c-f2da49417121_cat.jpeg",
       "PackagePath": "staticwebassets/images/52658f22-0912-48ea-a95c-f2da49417121_cat.jpeg"
+    },
+    {
+      "Id": "/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/wwwroot/images/d9c2a325-4a91-4d8d-a3c5-1ade6fc4c242_5_158_3.webp",
+      "PackagePath": "staticwebassets/images/d9c2a325-4a91-4d8d-a3c5-1ade6fc4c242_5_158_3.webp"
+    },
+    {
+      "Id": "/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/wwwroot/images/f16df768-fdb3-4c49-8408-88fe6d261351_cat.jpeg",
+      "PackagePath": "staticwebassets/images/f16df768-fdb3-4c49-8408-88fe6d261351_cat.jpeg"
     },
     {
       "Id": "obj/Debug/net7.0/staticwebassets/msbuild.NewDecade.Microsoft.AspNetCore.StaticWebAssets.props",

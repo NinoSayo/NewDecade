@@ -8,7 +8,6 @@ namespace NewDecade.Models
 	public class BlogPost
 	{
         [Key]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int BlogPostId { get; set; }
 
         [Required]
