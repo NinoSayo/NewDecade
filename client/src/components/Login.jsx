@@ -3,11 +3,14 @@ import './style.css';
 import 'boxicons/css/boxicons.min.css';
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Login = ({ }) => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -18,11 +21,15 @@ const Login = ({ }) => {
     };
 
     try {
-      var response = await axios.post("https://localhost:7240/api/User/login", userData, { withCredentials: true });
-      const getInfo = response.data;
-      sessionStorage.setItem('username', JSON.stringify(getInfo));
+      var response = await axios.post("https://localhost:7240/api/User/login", userData, {withCredentials:true});
+      if(response.status === 200){
+        setLoading(true);
+        toast.info('Processing...',  { position: 'top-center' });
+      }
       navigate('/profile/general');
     } catch (error) {
+      setLoading(true);
+      toast.error("Invalid Username or Password. Please try again!",  { position: 'top-center' });
       console.error("Error during API call:", error);
     }
   };
@@ -59,6 +66,7 @@ const Login = ({ }) => {
           </div>
         </form>
       </div>
+      <ToastContainer />
     </div>
   );
 };

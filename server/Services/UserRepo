@@ -8,13 +8,15 @@ using System.Net.Mail;
 using System.Net;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.AspNetCore.Http.HttpResults;
+using Org.BouncyCastle.Utilities.Net;
 
 namespace Project3.Services
 {
     public class UserRepo : IUserRepo
     {
         private readonly DatabaseContext db;
-        private readonly IConfiguration configuration; 
+        private readonly IConfiguration configuration;
 
         public UserRepo(DatabaseContext db, IConfiguration configuration)
         {
@@ -22,6 +24,7 @@ namespace Project3.Services
             this.configuration = configuration;
         }
 
+        // Phương thức xác thực
         public async Task<User> Authenticate(UserLogin userLogin)
         {
             try
@@ -39,16 +42,20 @@ namespace Project3.Services
             }
         }
 
-        public async Task<bool> ConfirmEmail(int userId, string confirmationCode)
+        // Phương thức xác nhận email
+        public async Task<bool> ConfirmEmail(int userId, string confirmationCodeToken)
         {
             try
             {
                 var user = await GetUserById(userId);
 
-                if (user != null && user.ConfirmationCode == confirmationCode)
+                if (user != null && user.ConfirmationCodeToken == confirmationCodeToken && user.ConfirmationCodeExpires > DateTime.Now)
                 {
                     user.IsConfirmed = true;
-                    db.Users.Update(user);
+                    user.ConfirmationCode = null;
+                    user.ConfirmationCodeExpires = null;
+                    user.ConfirmationCodeToken = null;
+
                     await db.SaveChangesAsync();
                     return true;
                 }
@@ -61,29 +68,53 @@ namespace Project3.Services
             }
         }
 
-        public async Task<User> CreateUser(User user)
+        // Phương thức tạo người dùng mới
+        public async Task<string> CreateUser(User user)
         {
             try
             {
-                user.Role = "User";
-                user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
-                user.RegisterTime = DateTime.Now;
-                user.IsOnline = true;
-                user.Avatar = "";
-                string confirmationCode = GenerateRandomCode();
-                user.ConfirmationCode = confirmationCode;
-                user.IsConfirmed = false;
-                SendConfirmationEmail(user.Email, confirmationCode);
-                db.Users.Add(user);
-                await db.SaveChangesAsync();
-                return user;
+                if (await IsUserNameUnique(user.UserName))
+                {
+                    if (await IsEmailUnique(user.Email))
+                    {
+                        if(await IsPhoneUnique(user.Phone))
+                        {
+                            user.Role = "User";
+                            user.Password = BCrypt.Net.BCrypt.HashPassword(user.Password);
+                            user.RegisterTime = DateTime.Now;
+                            user.ConfirmationCode = GenerateRandomCode();
+                            user.IsConfirmed = false;
+                            user.ConfirmationCodeExpires = DateTime.Now.AddHours(24);
+                            user.ConfirmationCodeToken = Guid.NewGuid().ToString();
+
+                            db.Users.Add(user);
+                            await db.SaveChangesAsync();
+
+                            SendConfirmationEmail(user.Email, user.ConfirmationCodeToken);
+                            return null;
+                        }
+                        else
+                        {
+                            return "Phone is already in use";
+                        }
+                    }
+                    else
+                    {
+                        return "Email is already in use";
+                    }
+                }
+                else
+                {
+                    return "Username is already in use";
+                }
             }
-            catch
+            catch (Exception ex)
             {
-                return null;
+                return ex.Message;
             }
         }
 
+        // Phương thức xóa người dùng
         public async Task<bool> DeleteUser(int id)
         {
             try
@@ -99,37 +130,17 @@ namespace Project3.Services
             }
         }
 
-        public async Task<User> EditUser(User user)
+        // Phương thức quên mật khẩu
+        public async Task<User> ForgotPassword(int id, string password)
         {
             try
             {
-                var oldUser = await GetUserById(user.UserId);
-                oldUser.UserName = user.UserName;
-                oldUser.Email = user.Email;
-                oldUser.Phone = user.Phone;
-                oldUser.Address = user.Address;
-                oldUser.Avatar = user.Avatar;
-                db.Users.Update(user);
-                await db.SaveChangesAsync();
-                return user;
-            }
-            catch
-            {
-                return null;
-            }
-        }
-
-        public async Task<User> ForgotPassword(string username, string password)
-        {
-            try
-            {
-                var user = await db.Users.SingleOrDefaultAsync(u => u.UserName == username);
-                if(user == null)
+                var user = await GetUserById(id);
+                if (user == null)
                 {
                     return null;
                 }
                 user.Password = password;
-                db.Users.Update(user);
                 await db.SaveChangesAsync();
                 return user;
             }
@@ -139,6 +150,7 @@ namespace Project3.Services
             }
         }
 
+        // Phương thức sinh token
         public async Task<string> GenerateToken(User user)
         {
             try
@@ -160,6 +172,7 @@ namespace Project3.Services
             }
         }
 
+        // Phương thức lấy danh sách tất cả người dùng
         public async Task<IEnumerable<User>> GetAllUsers()
         {
             try
@@ -173,6 +186,7 @@ namespace Project3.Services
             }
         }
 
+        // Phương thức lấy người dùng theo ID
         public async Task<User> GetUserById(int id)
         {
             try
@@ -186,6 +200,7 @@ namespace Project3.Services
             }
         }
 
+        // Phương thức tìm kiếm người dùng
         public async Task<IEnumerable<User>> SearchUser(string username)
         {
             try
@@ -199,19 +214,183 @@ namespace Project3.Services
             }
         }
 
-        public async Task<User> Logout(int id)
+        // Phương thức tải ảnh đại diện
+        public async Task<byte[]> GetAvatar(int userId)
+        {
+            try
+            {
+                var user = await GetUserById(userId);
+
+                if (user != null && !string.IsNullOrEmpty(user.Avatar))
+                {
+                    var imagePath = Path.Combine("Images", user.Avatar);
+
+                    if (System.IO.File.Exists(imagePath))
+                    {
+                        return await System.IO.File.ReadAllBytesAsync(imagePath);
+                    }
+                }
+
+                return null;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
+        // Phương thức chỉnh sửa email
+        public async Task<string> EditEmail(int userId, string newEmail, string confirmationCode)
+        {
+            try
+            {
+                var user = await GetUserById(userId);
+
+                if (user != null)
+                {
+                    if (user.ConfirmationCode == confirmationCode)
+                    {
+                        user.Email = newEmail;
+                        user.ConfirmationCode = null;
+                        user.IsConfirmed = true;
+                        await db.SaveChangesAsync();
+                        return null;
+                    }
+                    else
+                    {
+                        return "Invalid confirmation code"; // Trả về thông báo lỗi khi mã xác nhận không hợp lệ
+                    }
+                }
+                return "User not found"; // Trả về thông báo lỗi khi người dùng không được tìm thấy
+            }
+            catch (Exception ex)
+            {
+                return ex.Message; // Trả về lỗi nếu có lỗi xảy ra
+            }
+        }
+
+        // Phương thức chỉnh sửa thông tin
+        public async Task<User> EditInfo(int id, string fullname, string address)
         {
             try
             {
                 var user = await GetUserById(id);
-                user.IsOnline = false;
-                db.Users.Update(user);
-                await db.SaveChangesAsync();
+                if (user != null)
+                {
+                    user.FullName = fullname;
+                    user.Address = address;
+                    db.Users.Update(user);
+                    await db.SaveChangesAsync();
+                }
                 return user;
             }
             catch
             {
                 return null;
+            }
+        }
+
+        // Phương thức thay đổi mật khẩu
+        public async Task<string> ChangePassword(int userId, string oldPassword, string newPassword)
+        {
+            try
+            {
+                var user = await GetUserById(userId);
+
+                if (user != null)
+                {
+                    if (BCrypt.Net.BCrypt.Verify(oldPassword, user.Password))
+                    {
+                        user.Password = BCrypt.Net.BCrypt.HashPassword(newPassword);
+                        await db.SaveChangesAsync();
+                        return null;
+                    }
+                    return "Old password is incorrect";
+                }
+
+                return "User not found";
+            }
+            catch (Exception ex)
+            {
+                return ex.Message;
+            }
+        }
+
+        // Phương thức gửi email xác nhận
+        public async Task<string> SendConfirmationCodeEmail(int id, string toEmail)
+        {
+            try
+            {
+                var user = await GetUserById(id);
+                if(await IsEmailUnique(toEmail))
+                { 
+                    user.ConfirmationCode = GenerateRandomCode();
+                    db.Users.Update(user);
+                    await db.SaveChangesAsync();
+                    using (MailMessage mail = new MailMessage())
+                    {
+                        mail.From = new MailAddress("minhtri120604@gmail.com");
+                        mail.To.Add(toEmail);
+                        mail.Subject = "Confirmation Code for Email Update";
+
+                        // Updated mail.Body to include the confirmation code
+                        mail.Body = $@"<p>Your confirmation code is: <strong>{user.ConfirmationCode}</strong></p>";
+
+                        // Set the email body format to HTML
+                        mail.IsBodyHtml = true;
+
+                        using (SmtpClient smtp = new SmtpClient("smtp.gmail.com"))
+                        {
+                            smtp.Port = 587;
+                            smtp.Credentials = new NetworkCredential("minhtri120604@gmail.com", "unvp qvvg sfso yiik");
+                            smtp.EnableSsl = true;
+                            smtp.Send(mail);
+                        }
+                    }
+                    return null;
+                }
+                return "Email is already in use";
+            }
+            catch(Exception ex) 
+            {
+                return ex.Message;
+            }
+        }
+
+            // Phương thức sinh mã xác nhận ngẫu nhiên
+            private string GenerateRandomCode()
+        {
+            Random random = new Random();
+            int code = random.Next(100000, 999999);
+            return code.ToString();
+        }
+
+        // Phương thức gửi email xác nhận
+        private void SendConfirmationEmail(string toEmail, string confirmationCodeToken)
+        {
+            using (MailMessage mail = new MailMessage())
+            {
+                mail.From = new MailAddress("minhtri120604@gmail.com");
+                mail.To.Add(toEmail);
+                mail.Subject = "Hello we are Online Laundry, this is the email to confirm your email account.";
+
+                // Sử dụng token thay vì mã xác nhận
+                string confirmationLink = $"https://localhost:7240/api/User/confirmEmail/{confirmationCodeToken}";
+
+                // Updated mail.Body to include an HTML button
+                mail.Body = $@"<p>Please click the following button to confirm your email:</p>
+                      <a href=""{confirmationLink}"" style=""display: inline-block; padding: 10px 20px; background-color: #007BFF; color: #fff; text-decoration: none; border-radius: 5px;"">Confirm Email</a>";
+
+                // Set the email body format to HTML
+                mail.IsBodyHtml = true;
+
+                using (SmtpClient smtp = new SmtpClient("smtp.gmail.com"))
+                {
+                    smtp.Port = 587;
+                    smtp.Credentials = new NetworkCredential("minhtri120604@gmail.com", "unvp qvvg sfso yiik");
+                    smtp.EnableSsl = true;
+                    smtp.Send(mail);
+                }
             }
         }
 
@@ -222,8 +401,19 @@ namespace Project3.Services
                 var user = await GetUserById(userId);
                 if (user != null && avatarFile != null)
                 {
-                    // Lưu file vật lý
-                    string uploadsFolder = Path.Combine("Images"); // Thay đổi đường dẫn tùy thuộc vào cấu trúc thư mục của bạn
+                    // Check if the user already has an avatar
+                    if (!string.IsNullOrEmpty(user.Avatar))
+                    {
+                        // If yes, delete the old avatar file
+                        string oldFilePath = Path.Combine("Images", user.Avatar);
+                        if (File.Exists(oldFilePath))
+                        {
+                            File.Delete(oldFilePath);
+                        }
+                    }
+
+                    // Save the new avatar file
+                    string uploadsFolder = Path.Combine("Images");
                     string uniqueFileName = Guid.NewGuid().ToString() + "_" + avatarFile.FileName;
                     string filePath = Path.Combine(uploadsFolder, uniqueFileName);
                     using (var fileStream = new FileStream(filePath, FileMode.Create))
@@ -231,7 +421,7 @@ namespace Project3.Services
                         await avatarFile.CopyToAsync(fileStream);
                     }
 
-                    // Cập nhật đường dẫn avatar trong cơ sở dữ liệu
+                    // Update the avatar path in the database
                     user.Avatar = uniqueFileName;
                     db.Users.Update(user);
                     await db.SaveChangesAsync();
@@ -244,44 +434,22 @@ namespace Project3.Services
                 return false;
             }
         }
-
-        private string GenerateRandomCode()
+        private async Task<bool> IsEmailUnique(string email)
         {
-            Random random = new Random();
-            int code = random.Next(100000, 999999);
-            return code.ToString();
+            // Kiểm tra xem địa chỉ email đã tồn tại trong cơ sở dữ liệu hay không
+            return await db.Users.AllAsync(u => u.Email != email);
         }
 
-        private void SendConfirmationEmail(string toEmail, string confirmationCode)
+        private async Task<bool> IsUserNameUnique(string userName)
         {
-            using (MailMessage mail = new MailMessage())
-            {
-                mail.From = new MailAddress("minhtri120604@gmail.com");
-                mail.To.Add(toEmail);
-                mail.Subject = "Hello we are Online Laundry, this is the email to confirm your email account.";
-                mail.Body = $"Your confirmation code is: {confirmationCode}";
-
-                using (SmtpClient smtp = new SmtpClient("smtp.gmail.com"))
-                {
-                    smtp.Port = 587;
-                    smtp.Credentials = new NetworkCredential("minhtri120604@gmail.com", "unvp qvvg sfso yiik");
-                    smtp.EnableSsl = true;
-                    smtp.Send(mail);
-                }
-            }
+            // Kiểm tra xem UserName đã tồn tại trong cơ sở dữ liệu hay không
+            return await db.Users.AllAsync(u => u.UserName != userName);
         }
 
-        public async Task<User> GetUserByUsername(string username)
+        private async Task<bool> IsPhoneUnique(string phone)
         {
-            try
-            {
-                var user = await db.Users.SingleOrDefaultAsync(u => u.UserName == username);
-                return user;
-            }
-            catch
-            {
-                return null;
-            }
+            // Kiểm tra xem UserName đã tồn tại trong cơ sở dữ liệu hay không
+            return await db.Users.AllAsync(u => u.Phone != phone);
         }
     }
 }
