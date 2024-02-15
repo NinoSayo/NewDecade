@@ -1,10 +1,13 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './style.css';
 import 'boxicons/css/boxicons.min.css';
-import { Link } from 'react-router-dom';
+import 'boxicons/css/boxicons.min.css';
+import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import validationSchema from './validationSchema';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const Signup = () => {
   const initialValues = {
@@ -15,16 +18,23 @@ const Signup = () => {
     address: '',
     phone: '',
   };
+  const navigate = useNavigate();
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (values) => {
     try {
-      console.log("userData:", values);
-      const response = await axios.post("https://localhost:7240/api/User/createUser", values);
-      console.log(response.data);
+      var response = await axios.post("https://localhost:7240/api/User/createUser", values);
+      if(response.status === 200){
+        setLoading(true);
+        toast.info('Processing...',  { position: 'top-center' });
+      }
+      navigate('/login');
     } catch (error) {
-      console.error("Error during API call:", error);
+      setLoading(false);
+      toast.error(error.response.data, { position: 'top-center' });
     }
   };
+  
 
   return (
     <div className="wrapper">
@@ -107,6 +117,7 @@ const Signup = () => {
           </Form>
         </Formik>
       </div>
+      <ToastContainer />
     </div>
   );
 };
