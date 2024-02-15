@@ -1,0 +1,38 @@
+﻿<Properties StartupConfiguration="{A92D3E59-99C5-431C-A45C-5AAADEB86BFF}|https">
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MultiItemStartupConfigurations />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.ItemProperties.NewDecade PreferredExecutionTarget="/Applications/Google Chrome.app" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="NewDecade/Controllers/ContactController.cs">
+    <Files>
+      <File FileName="NewDecade/Models/Contact.cs" />
+      <File FileName="NewDecade/Controllers/ContactController.cs" Line="71" Column="49" />
+      <File FileName="NewDecade/appsettings.json" Line="17" Column="1" />
+      <File FileName="NewDecade/Program.cs" Line="30" Column="71" />
+      <File FileName="NewDecade/Controllers/BlogController.cs" Line="74" Column="33" />
+      <File FileName="NewDecade/Models/BlogPost.cs" Line="10" Column="14" />
+      <File FileName="NewDecade/Repositories/IBlogRepository.cs" Line="16" Column="1" />
+      <File FileName="NewDecade/Repositories/BlogRepository.cs" Line="33" Column="10" />
+      <File FileName="NewDecade/Data/DatabaseContext.cs" Line="46" Column="43" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State name="__root__">
+          <Node name="Project3">
+            <Node name="NewDecade">
+              <Node name="Dependencies" expanded="True" />
+              <Node name="Controllers">
+                <Node name="ContactController.cs" selected="True" />
+              </Node>
+              <Node name="Repositories" expanded="True" />
+              <Node name="wwwroot" expanded="True" />
+            </Node>
+          </Node>
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+</Properties>

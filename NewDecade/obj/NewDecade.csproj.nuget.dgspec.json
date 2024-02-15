@@ -1,27 +1,26 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ASUS\\Desktop\\Project3\\NewDecade\\NewDecade\\NewDecade.csproj": {}
+    "/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/NewDecade.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ASUS\\Desktop\\Project3\\NewDecade\\NewDecade\\NewDecade.csproj": {
+    "/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/NewDecade.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASUS\\Desktop\\Project3\\NewDecade\\NewDecade\\NewDecade.csproj",
+        "projectUniqueName": "/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/NewDecade.csproj",
         "projectName": "NewDecade",
-        "projectPath": "C:\\Users\\ASUS\\Desktop\\Project3\\NewDecade\\NewDecade\\NewDecade.csproj",
-        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASUS\\Desktop\\Project3\\NewDecade\\NewDecade\\obj\\",
+        "projectPath": "/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/NewDecade.csproj",
+        "packagesPath": "/Users/mac/.nuget/packages/",
+        "outputPath": "/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/obj/",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/mac/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "/usr/local/share/dotnet/sdk/7.0.311/Sdks/Microsoft.NET.Sdk.Web/library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -40,9 +39,17 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "MailKit": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[7.0.14, )"
+            },
             "Microsoft.AspNetCore.OpenApi": {
               "target": "Package",
-              "version": "[7.0.13, )"
+              "version": "[7.0.14, )"
             },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
@@ -58,9 +65,25 @@
               "target": "Package",
               "version": "[7.0.14, )"
             },
+            "MimeKit": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
             "Swashbuckle.AspNetCore": {
               "target": "Package",
               "version": "[6.5.0, )"
+            },
+            "Swashbuckle.AspNetCore.Swagger": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
+            "ZXing.Net": {
+              "target": "Package",
+              "version": "[0.16.9, )"
             }
           },
           "imports": [
@@ -82,7 +105,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.311/RuntimeIdentifierGraph.json"
         }
       }
     }
