@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NewDecade")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Release")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4f39a3508fac4d21c56708c105c836aaaa8a13e8")]
 [assembly: System.Reflection.AssemblyProductAttribute("NewDecade")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NewDecade")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

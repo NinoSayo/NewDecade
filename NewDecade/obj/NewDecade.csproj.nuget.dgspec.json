@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\ASUS\\Source\\Repos\\NinoSayo\\NewDecade\\NewDecade\\NewDecade.csproj": {}
+    "C:\\Users\\ASUS\\Desktop\\Project3\\NewDecade\\NinoSayo\\NewDecade2\\NewDecade\\NewDecade.csproj": {}
   },
   "projects": {
-    "C:\\Users\\ASUS\\Source\\Repos\\NinoSayo\\NewDecade\\NewDecade\\NewDecade.csproj": {
+    "C:\\Users\\ASUS\\Desktop\\Project3\\NewDecade\\NinoSayo\\NewDecade2\\NewDecade\\NewDecade.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\ASUS\\Source\\Repos\\NinoSayo\\NewDecade\\NewDecade\\NewDecade.csproj",
+        "projectUniqueName": "C:\\Users\\ASUS\\Desktop\\Project3\\NewDecade\\NinoSayo\\NewDecade2\\NewDecade\\NewDecade.csproj",
         "projectName": "NewDecade",
-        "projectPath": "C:\\Users\\ASUS\\Source\\Repos\\NinoSayo\\NewDecade\\NewDecade\\NewDecade.csproj",
+        "projectPath": "C:\\Users\\ASUS\\Desktop\\Project3\\NewDecade\\NinoSayo\\NewDecade2\\NewDecade\\NewDecade.csproj",
         "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\ASUS\\Source\\Repos\\NinoSayo\\NewDecade\\NewDecade\\obj\\",
+        "outputPath": "C:\\Users\\ASUS\\Desktop\\Project3\\NewDecade\\NinoSayo\\NewDecade2\\NewDecade\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,6 +40,14 @@
         "net7.0": {
           "targetAlias": "net7.0",
           "dependencies": {
+            "BCrypt.Net": {
+              "target": "Package",
+              "version": "[0.1.0, )"
+            },
+            "FirebaseAdmin": {
+              "target": "Package",
+              "version": "[2.4.0, )"
+            },
             "Microsoft.AspNet.WebApi.Core": {
               "target": "Package",
               "version": "[5.3.0, )"
@@ -94,7 +102,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.403\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }
