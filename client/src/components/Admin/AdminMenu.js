@@ -7,10 +7,10 @@ function AdminMenu() {
       {/* Main Sidebar Container */}
       <aside className="main-sidebar sidebar-dark-primary elevation-4">
         {/* Brand Logo */}
-        <a href="index.html" className="brand-link">
+        <Link to="/" className="brand-link">
           <img src="dist/img/logoicon.png" className="brand-image img-circle elevation-3" style={{ opacity: '.8' }} />
           <span className="brand-text font-weight-light">Admin</span>
-        </a>
+        </Link>
         {/* Sidebar */}
         <div className="sidebar">
           {/* Sidebar user panel (optional) */}
@@ -19,7 +19,7 @@ function AdminMenu() {
               <img src="dist/img/logo.png" className="img-circle elevation-2" alt="User" />
             </div>
             <div className="info">
-              <a href="fake_url" className="d-block">Group 3</a>
+              <Link to="/" className="d-block">Group 3</Link>
             </div>
           </div>
           {/* SidebarSearch Form */}
