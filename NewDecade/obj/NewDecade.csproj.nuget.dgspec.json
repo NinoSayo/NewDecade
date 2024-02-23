@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\dphat\\Desktop\\Project3\\NewDecade\\NewDecade.csproj": {}
+    "C:\\Users\\dphat\\Desktop\\Project3\\NewDecade\\NewDecade\\NewDecade.csproj": {}
   },
   "projects": {
-    "C:\\Users\\dphat\\Desktop\\Project3\\NewDecade\\NewDecade.csproj": {
+    "C:\\Users\\dphat\\Desktop\\Project3\\NewDecade\\NewDecade\\NewDecade.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\dphat\\Desktop\\Project3\\NewDecade\\NewDecade.csproj",
+        "projectUniqueName": "C:\\Users\\dphat\\Desktop\\Project3\\NewDecade\\NewDecade\\NewDecade.csproj",
         "projectName": "NewDecade",
-        "projectPath": "C:\\Users\\dphat\\Desktop\\Project3\\NewDecade\\NewDecade.csproj",
+        "projectPath": "C:\\Users\\dphat\\Desktop\\Project3\\NewDecade\\NewDecade\\NewDecade.csproj",
         "packagesPath": "C:\\Users\\dphat\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\dphat\\Desktop\\Project3\\NewDecade\\obj\\",
+        "outputPath": "C:\\Users\\dphat\\Desktop\\Project3\\NewDecade\\NewDecade\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\dphat\\AppData\\Roaming\\NuGet\\NuGet.Config",

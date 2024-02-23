@@ -1,0 +1,16 @@
+.position-relative {
+    position: relative;
+  }
+  
+  .position-relative input {
+    padding-right: 2.5rem; /* Adjust the padding to ensure space for the label */
+  }
+  
+  .position-relative label {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    left: 1rem; /* Adjust the left position as needed */
+    color: white;
+  }
+  

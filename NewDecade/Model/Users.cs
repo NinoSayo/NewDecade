@@ -1,7 +1,12 @@
-﻿namespace NewDecade.Model
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
+namespace NewDecade.Model
 {
     public class Users
     {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int UserId {  get; set; }
         public string Email { get; set; }
         public string Password { get; set; }
@@ -16,6 +21,6 @@
         public DateTime CreateAt { get; set; }
         public string VerificationCode { get; set; }
         public DateTime Expiry { get; set; }
-        public bool isVerified { get; set; } = false;
+        public bool isVerified { get; set; } 
     }
 }

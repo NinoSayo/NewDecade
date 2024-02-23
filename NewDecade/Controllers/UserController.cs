@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using NewDecade.DTO;
 using NewDecade.IServices;
 using NewDecade.Model;
 
@@ -19,21 +20,10 @@ namespace NewDecade.Controllers
 
         [HttpPost("createUser")]
         [AllowAnonymous]
-        public async Task<ActionResult> Create(Users user)
+        public async Task<ActionResult<string>> Create(UserDTOs.UserDTO user)
         {
-            try
-            {
-                var errorMessage = await _authenticationServices.CreateUser(user);
-                if (errorMessage != null)
-                {
-                    return Ok();
-                }
-                return BadRequest(errorMessage);
-            }
-            catch (Exception ex)
-            {
-                return BadRequest(ex.Message);
-            }
+            var result = await _authenticationServices.CreateUser(user);
+            return Ok(result);
         }
 
         [AllowAnonymous]
