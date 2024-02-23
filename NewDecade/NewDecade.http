@@ -1,0 +1,6 @@
+@NewDecade_HostAddress = http://localhost:5103
+
+GET {{NewDecade_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###

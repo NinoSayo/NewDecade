@@ -1,14 +1,12 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using NewDecade.Models;
+using NewDecade.Model;
 
 namespace NewDecade.Data
 {
     public class DatabaseContext : DbContext
     {
-        public DatabaseContext(DbContextOptions<DatabaseContext> o) : base(o) { }
+        public DatabaseContext(DbContextOptions options) : base(options) { }
 
-        DbSet<Customers> customers;
-        DbSet<Invoice> invoices;
-        DbSet<Users> users;
+        public DbSet<Users> Users { get; set; }
     }
 }
