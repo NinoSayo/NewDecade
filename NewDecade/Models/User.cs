@@ -38,5 +38,7 @@ namespace Project3.Models
         public string? ConfirmationCode { get; set; }
         public DateTime? ConfirmationCodeExpires { get; set; }
         public string? ConfirmationCodeToken { get; set; }
+        public bool isBan { get; set; }
+        public bool isOnline { get; set; }
     }
 }

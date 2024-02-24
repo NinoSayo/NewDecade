@@ -32,6 +32,8 @@ namespace Project3.Services
                 var currentUser = await db.Users.SingleOrDefaultAsync(u => u.UserName.ToLower() == userLogin.UserName || u.Email.ToLower() == userLogin.UserName);
                 if (currentUser != null && BCrypt.Net.BCrypt.Verify(userLogin.Password, currentUser.Password))
                 {
+                    currentUser.isOnline = true;
+                    await db.SaveChangesAsync();
                     return currentUser;
                 }
                 return null;
@@ -86,6 +88,8 @@ namespace Project3.Services
                             user.IsConfirmed = false;
                             user.ConfirmationCodeExpires = DateTime.Now.AddHours(24);
                             user.ConfirmationCodeToken = Guid.NewGuid().ToString();
+                            user.isOnline = false;
+                            user.isBan = false;
 
                             db.Users.Add(user);
                             await db.SaveChangesAsync();
@@ -450,6 +454,63 @@ namespace Project3.Services
         {
             // Kiểm tra xem UserName đã tồn tại trong cơ sở dữ liệu hay không
             return await db.Users.AllAsync(u => u.Phone != phone);
+        }
+
+        public async Task<bool> Logout(int userId)
+        {
+            try
+            {
+                var user = await GetUserById(userId);
+                if (user != null)
+                {
+                    user.isOnline = false;
+                    await db.SaveChangesAsync();
+                    return true;
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> Ban(int userId)
+        {
+            try
+            {
+                var user = await GetUserById(userId);
+                if (user != null)
+                {
+                    user.isBan = true;
+                    await db.SaveChangesAsync();
+                    return true;
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> CancelBan(int userId)
+        {
+            try
+            {
+                var user = await GetUserById(userId);
+                if (user != null)
+                {
+                    user.isBan = false;
+                    await db.SaveChangesAsync();
+                    return true;
+                }
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
         }
     }
 }

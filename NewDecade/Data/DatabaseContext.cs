@@ -10,12 +10,22 @@
 
                 }
                 public DbSet<BlogPost> BlogPosts { get; set; }
-                public DbSet<Users> Users { get; set; }
+                public DbSet<User> Users { get; set; }
                 public DbSet<Contact> Contacts { get; set; }
 
                 protected override void OnModelCreating(ModelBuilder modelBuilder)
                 {
                     base.OnModelCreating(modelBuilder);
+
+                     modelBuilder.Entity<User>(u =>
+                    {
+                        u.Property("UserId").ValueGeneratedOnAdd().UseIdentityColumn();
+                        u.HasKey("UserId");
+                        u.HasData(new User[]
+                        {
+                            new User {UserId = 1, UserName="Admin", FullName="Online Laundry", Email="onlineLaundry@gmail.com", Address="HCM", Password=BCrypt.Net.BCrypt.HashPassword("123@123"), RegisterTime=DateTime.Now, Role="Admin", Phone="0123456789"}
+                        });
+                    });
 
                     modelBuilder.Entity<BlogPost>().HasData(
                        new BlogPost

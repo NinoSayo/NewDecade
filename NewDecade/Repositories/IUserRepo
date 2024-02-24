@@ -22,5 +22,8 @@ namespace Project3.IServices
         Task<bool> UploadAvatar(int userId, IFormFile avatarFile);
         Task<byte[]> GetAvatar(int userId);
         Task<string> SendConfirmationCodeEmail(int userId, string toEmail);
+        Task<bool> Logout(int userId);
+        Task<bool> Ban(int userId);
+        Task<bool> CancelBan(int userId);
     }
 }
