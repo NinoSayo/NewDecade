@@ -1,14 +1,21 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 import { FaFacebookF, FaTwitter, FaGoogle } from 'react-icons/fa';
 import axios from 'axios';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
-import { useNavigate , Link } from 'react-router-dom';
+import { useNavigate , Link , useLocation } from 'react-router-dom';
 
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [error, setError] = useState('');
     const navigate = useNavigate();
+    const location = useLocation();
+
+    useEffect(() =>{
+        if(location.state && location.state.email){
+            setEmail(location.state.email);
+        }
+    },[location.state]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
@@ -42,7 +49,7 @@ const Login = () => {
                               <p className="text-white-50 mb-5">Please enter your email and password!</p>
                               <Form onSubmit={handleSubmit}>
                                   <Form.Group className="mb-4">
-                                      <Form.Control type="email" placeholder="Email" size="lg" value={email} onChange={(e) => setEmail(e.target.value)}/>
+                                      <Form.Control type="email" placeholder="Email" size="lg" value={email} onChange={(e) => setEmail(e.target.value)} readOnly={location.state && location.state.email}/>
                                   </Form.Group>
                                   <Form.Group className="mb-4">
                                       <Form.Control type="password" placeholder="Password" size="lg" value={password} onChange={(e) => setPassword(e.target.value)}/>

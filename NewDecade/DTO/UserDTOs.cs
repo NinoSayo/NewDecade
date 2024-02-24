@@ -16,5 +16,11 @@
             public string Role { get; set; } = "User";
             public bool isVerified { get; set; } = false;
         }
+
+        public class VerifyDTO
+        {
+            public string Email { get; set; }
+            public string VerificationCode { get; set; }
+        }
     }
 }

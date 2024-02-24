@@ -1,15 +1,6 @@
 import React, { useState } from "react";
-import { FaFacebookF, FaTwitter, FaGoogle } from "react-icons/fa";
 import axios from "axios";
-import {
-  Container,
-  Row,
-  Col,
-  Card,
-  Form,
-  Button,
-  Alert,
-} from "react-bootstrap";
+import { Container, Row,  Col, Card,  Form, Button,} from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 const Register = () => {
@@ -49,7 +40,7 @@ const Register = () => {
       );
       if (response.status === 200) {
         console.log("User Created", response.data);
-        navigate("/login");
+        navigate("/verify",{state: {email:email}});
       }
     } catch (error) {
       if (

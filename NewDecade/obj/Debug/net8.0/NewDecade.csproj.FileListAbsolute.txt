@@ -131,9 +131,9 @@ C:\Users\dphat\Desktop\Project3\NewDecade\NewDecade\obj\Debug\net8.0\staticwebas
 C:\Users\dphat\Desktop\Project3\NewDecade\NewDecade\obj\Debug\net8.0\staticwebassets\msbuild.buildTransitive.NewDecade.props
 C:\Users\dphat\Desktop\Project3\NewDecade\NewDecade\obj\Debug\net8.0\staticwebassets.pack.json
 C:\Users\dphat\Desktop\Project3\NewDecade\NewDecade\obj\Debug\net8.0\scopedcss\bundle\NewDecade.styles.css
-C:\Users\dphat\Desktop\Project3\NewDecade\NewDecade\obj\Debug\net8.0\NewDecade.csproj.CopyComplete
 C:\Users\dphat\Desktop\Project3\NewDecade\NewDecade\obj\Debug\net8.0\NewDecade.dll
 C:\Users\dphat\Desktop\Project3\NewDecade\NewDecade\obj\Debug\net8.0\refint\NewDecade.dll
 C:\Users\dphat\Desktop\Project3\NewDecade\NewDecade\obj\Debug\net8.0\NewDecade.pdb
 C:\Users\dphat\Desktop\Project3\NewDecade\NewDecade\obj\Debug\net8.0\NewDecade.genruntimeconfig.cache
 C:\Users\dphat\Desktop\Project3\NewDecade\NewDecade\obj\Debug\net8.0\ref\NewDecade.dll
+C:\Users\dphat\Desktop\Project3\NewDecade\NewDecade\obj\Debug\net8.0\NewDecade.csproj.Up2Date

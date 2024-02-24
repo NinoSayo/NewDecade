@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using NewDecade.Data;
 using NewDecade.DTO;
+using NewDecade.IRepository;
 using NewDecade.IServices;
 using NewDecade.Model;
 
@@ -15,11 +16,14 @@ namespace NewDecade.Services
     {
         private readonly DatabaseContext _db;
         private readonly IConfiguration _configuration;
-
-        public AuthenticationServices(DatabaseContext db, IConfiguration configuration)
+        private readonly MailServices _mail;
+        private readonly IUserRepository _userRepository;
+        public AuthenticationServices(DatabaseContext db, IConfiguration configuration, MailServices mail, IUserRepository userRepository)
         {
             _db = db;
             _configuration = configuration;
+            _mail = mail;
+            _userRepository = userRepository;
         }
         //Phương thức xác thực
         public async Task<Users> Authenticate(UserLogin userLogin)
@@ -58,7 +62,7 @@ namespace NewDecade.Services
             try
             {
                 bool isEmailUnique = await IsEmailUnique(users.Email);
-                if (!isEmailUnique) 
+                if (!isEmailUnique)
                 {
                     return "Email is already in use";
                 }
@@ -82,15 +86,52 @@ namespace NewDecade.Services
                     isVerified = false
                 };
 
+
+
                 _db.Users.Add(newUser);
 
                 await _db.SaveChangesAsync();
+
+                await _mail.SendVerificationEmail(newUser.Email, newUser.VerificationCode);
 
                 return "User created successfully";
             }
             catch (Exception ex)
             {
                 return $"Error creating user: {ex.InnerException}";
+            }
+        }
+
+        public async Task<bool> VerifyEmail(string email, string code)
+        {
+            try
+            {
+                var user = await _userRepository.GetUserByEmail(email);
+
+                if (user != null && user.VerificationCode == code)
+                {
+                    if (user.Expiry >= DateTime.UtcNow)
+                    {
+                        user.isVerified = true;
+                        user.VerificationCode = "verified";
+                        user.Expiry = DateTime.MinValue;
+                        await _userRepository.SaveChangeAsync();
+                        return true;
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+                else
+                {
+                    return false;
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error verifying email: {ex.Message}");
+                return false;
             }
         }
 
@@ -125,7 +166,7 @@ namespace NewDecade.Services
 
         private async Task<bool> IsEmailUnique(string email)
         {
-            return await _db.Users.AllAsync(u  => u.Email == email);
+            return await _db.Users.AllAsync(u => u.Email == email);
         }
 
         private async Task<bool> IsPhoneUnique(string phone)
