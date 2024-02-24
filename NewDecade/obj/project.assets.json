@@ -4282,19 +4282,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dphat\\.nuget\\packages\\": {}
+    "C:\\Users\\ASUS\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\dphat\\Desktop\\Project3\\NewDecade\\NewDecade\\NewDecade.csproj",
+      "projectUniqueName": "C:\\Users\\ASUS\\Desktop\\Project3\\NewDecade\\NewDecade\\NewDecade.csproj",
       "projectName": "NewDecade",
-      "projectPath": "C:\\Users\\dphat\\Desktop\\Project3\\NewDecade\\NewDecade\\NewDecade.csproj",
-      "packagesPath": "C:\\Users\\dphat\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\dphat\\Desktop\\Project3\\NewDecade\\NewDecade\\obj\\",
+      "projectPath": "C:\\Users\\ASUS\\Desktop\\Project3\\NewDecade\\NewDecade\\NewDecade.csproj",
+      "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\ASUS\\Desktop\\Project3\\NewDecade\\NewDecade\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\dphat\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -4314,11 +4314,6 @@
         "warnAsError": [
           "NU1605"
         ]
-      },
-      "restoreAuditProperties": {
-        "enableAudit": "true",
-        "auditLevel": "low",
-        "auditMode": "direct"
       }
     },
     "frameworks": {
@@ -4375,7 +4370,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.201/PortableRuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.102/PortableRuntimeIdentifierGraph.json"
       }
     }
   }

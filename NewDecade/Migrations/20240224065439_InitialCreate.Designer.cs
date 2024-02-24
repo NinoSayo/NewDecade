@@ -12,7 +12,7 @@ using NewDecade.Data;
 namespace NewDecade.Migrations
 {
     [DbContext(typeof(DatabaseContext))]
-    [Migration("20240223220046_InitialCreate")]
+    [Migration("20240224065439_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
