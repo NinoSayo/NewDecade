@@ -1,26 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/NewDecade.csproj": {}
+    "C:\\Users\\ASUS\\Desktop\\Project3\\NewDecade\\NewDecade\\NewDecade.csproj": {}
   },
   "projects": {
-    "/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/NewDecade.csproj": {
+    "C:\\Users\\ASUS\\Desktop\\Project3\\NewDecade\\NewDecade\\NewDecade.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/NewDecade.csproj",
+        "projectUniqueName": "C:\\Users\\ASUS\\Desktop\\Project3\\NewDecade\\NewDecade\\NewDecade.csproj",
         "projectName": "NewDecade",
-        "projectPath": "/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/NewDecade.csproj",
-        "packagesPath": "/Users/mac/.nuget/packages/",
-        "outputPath": "/Users/mac/projects/Project-.NET-API/NewDecade/NewDecade/obj/",
+        "projectPath": "C:\\Users\\ASUS\\Desktop\\Project3\\NewDecade\\NewDecade\\NewDecade.csproj",
+        "packagesPath": "C:\\Users\\ASUS\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\ASUS\\Desktop\\Project3\\NewDecade\\NewDecade\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "/Users/mac/.nuget/NuGet/NuGet.Config"
+          "C:\\Users\\ASUS\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "net7.0"
         ],
         "sources": {
-          "/usr/local/share/dotnet/sdk/7.0.311/Sdks/Microsoft.NET.Sdk.Web/library-packs": {},
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
@@ -105,7 +106,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/7.0.311/RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.102\\RuntimeIdentifierGraph.json"
         }
       }
     }

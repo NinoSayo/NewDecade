@@ -26,14 +26,11 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   return (
-    <div className="wrapper">
-      <AdminHeader />
-      <AdminMenu />
-      <Router>
+      
         <Routes>
-          {/* <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
-          <Route path="/profile/*" element={<Profile />} /> */}
+          <Route path="/profile/*" element={<Profile />} />
           <Route path="/" element={<AdminDashboard />} />
           <Route path="/blogs" element={<BlogList blogs={blogs} />} />
           <Route path="/create-blog" element={<CreateBlog />} />
@@ -46,9 +43,6 @@ function App() {
           <Route path="/todo" element={<TodoList />} />
           <Route path="/widget" element={<Widgets />} />
         </Routes>
-        <AdminFooter />
-      </Router>
-    </div>
   );
 }
 
