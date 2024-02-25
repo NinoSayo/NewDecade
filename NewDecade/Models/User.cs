@@ -39,6 +39,7 @@ namespace Project3.Models
         public DateTime? ConfirmationCodeExpires { get; set; }
         public string? ConfirmationCodeToken { get; set; }
         public bool isBan { get; set; }
-        public bool isOnline { get; set; }
+        public string? isOnline { get; set; }
+        public string? ConnectionId { get; set; }
     }
 }

@@ -21,6 +21,7 @@ builder.Services.AddDbContext<DatabaseContext>(o => o.UseSqlServer(builder.Confi
 
 builder.Services.AddScoped<IBlogRepository, BlogRepository>();
 builder.Services.AddScoped<IUserRepo, UserRepo>();
+builder.Services.AddSignalR();
 
 var listHttp = builder.Configuration.GetSection("AllowOrigins").Get<string[]>();
 
@@ -77,5 +78,6 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+app.MapHub<BanUserHub>("/banUserHub");
 
 app.Run();

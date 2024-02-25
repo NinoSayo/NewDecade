@@ -19,6 +19,9 @@ import AdminTable from "./components/Admin/AdminTable";
 import LockScreen from "./components/Admin/LockScreen";
 import TodoList from "./components/Admin/Todolist";
 import Widgets from "./components/Admin/Widgets";
+import SignalRLogout from './components/SignalRLogout';
+import ForgotPassword from './components/ForgotPassword';
+import { AppProvider } from './components/AppContext';
 
 
 function App() {
@@ -26,8 +29,9 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   return (
-      
+      <AppProvider>
         <Routes>
+        <SignalRLogout/>
           <Route path="/login" element={<Login />} />
           <Route path="/signup" element={<Signup />} />
           <Route path="/profile/*" element={<Profile />} />
@@ -42,7 +46,10 @@ function App() {
           <Route path="/lock" element={<LockScreen />} />
           <Route path="/todo" element={<TodoList />} />
           <Route path="/widget" element={<Widgets />} />
+          <Route path="/forgotpassword" element={<ForgotPassword />} />
         </Routes>
+      </AppProvider>
+        
   );
 }
 
