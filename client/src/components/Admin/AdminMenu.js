@@ -39,7 +39,7 @@ function AdminMenu() {
               {/* Add icons to the links using the .nav-icon class
          with font-awesome or any other icon font library */}
               <li className="nav-item ">
-                <Link to="/" className="nav-link ">
+                <Link to="/admin" className="nav-link ">
                   <i className="nav-icon fas fa-tachometer-alt" />
                   <p>
                     Dashboard
@@ -73,15 +73,6 @@ function AdminMenu() {
                 </Link>
               </li>
               <li className="nav-header">OTHERS</li>
-              <li className="nav-item">
-                <Link to='calendar' className="nav-link">
-                  <i className="nav-icon fas fa-calendar-alt" />
-                  <p>
-                    Calendar
-                    <span className="badge badge-info right">2</span>
-                  </p>
-                </Link>
-              </li>
               <li className="nav-item">
                 <Link to='todo' className="nav-link">
                   <i className="nav-icon fas fa-columns" />
