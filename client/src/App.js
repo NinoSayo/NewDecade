@@ -22,6 +22,7 @@ import Widgets from "./components/Admin/Widgets";
 import SignalRLogout from './components/SignalRLogout';
 import ForgotPassword from './components/ForgotPassword';
 import { AppProvider } from './components/AppContext';
+import UserActivityTracker from './components/UserActivityTracker';
 
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
 
   return (
       <AppProvider>
+        <UserActivityTracker/>
         <Routes>
         <SignalRLogout/>
           <Route path="/login" element={<Login />} />

@@ -518,5 +518,39 @@ namespace Project3.Services
             }
             return connection.ConnectionId; 
         }
+
+        public async Task<bool> UpdateUserStatus(int userId, DateTime lastActivity, string status)
+        {
+            try
+            {
+                var user = await GetUserById(userId);
+                if (user == null)
+                {
+                    return false;
+                }
+                user.LastActivity = DateTime.Now;
+                user.isOnline = status;
+                db.Users.Update(user);
+                await db.SaveChangesAsync();
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public async Task<DateTime> GetLastActivity(int userId)
+        {
+            try
+            {
+                var user = await GetUserById(userId);
+                return user.LastActivity;
+            }
+            catch(Exception ex)
+            {
+                return DateTime.MinValue;
+            }
+        }
     }
 }

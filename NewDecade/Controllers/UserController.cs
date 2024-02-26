@@ -7,6 +7,7 @@ using Project3.Hubs;
 using Project3.IServices;
 using Project3.Models;
 using Project3.Services;
+using System.Net.Http;
 using System.Security.Claims;
 
 namespace Project3.Controllers
@@ -397,6 +398,66 @@ namespace Project3.Controllers
             catch (Exception ex)
             {
                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpGet("checkAndUpdateUserStatus")]
+        [Authorize]
+        public async Task<ActionResult> CheckAndUpdateUserStatus()
+        {
+            try
+            {
+                var userIdClaim = HttpContext.User.FindFirst("UserId");
+                if (userIdClaim == null)
+                {
+                    return BadRequest("Invalid value for userId in the token.");
+                }
+                var userId = int.Parse(userIdClaim.Value);
+                var lastActivityTime = await userRepo.GetLastActivity(userId);
+                var currentTime = DateTime.Now;
+                var timeSinceLastActivity = currentTime - lastActivityTime;
+
+                if (timeSinceLastActivity.TotalSeconds > 20)
+                {
+                    // Cập nhật trạng thái của người dùng thành Unknown
+                    await userRepo.UpdateUserStatus(userId, DateTime.Now, "Unknown");
+                    return Ok("User status updated.");
+                }
+
+                return Ok("User is active.");
+            }
+            catch (FormatException)
+            {
+                return BadRequest("Invalid format for user ID.");
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, $"Internal server error: {ex.Message}");
+            }
+        }
+
+
+        // Hàm để cập nhật thời gian hoạt động của người dùng khi họ thực hiện một hoạt động
+        [HttpGet("updateUserActivityTime")]
+        [Authorize]
+        public async Task<ActionResult> UpdateUserActivityTime()
+        {
+            try
+            {
+                var userIdClaim = HttpContext.User.FindFirst("UserId");
+
+                if (userIdClaim == null)
+                {
+                    return BadRequest("Invalid value for userId in the token.");
+                }
+
+                var userId = int.Parse(userIdClaim.Value);
+                await userRepo.UpdateUserStatus(userId, DateTime.Now, "Online");
+                return Ok("User activity time updated.");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
             }
         }
     }

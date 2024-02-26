@@ -21,7 +21,8 @@ namespace Project3.IServices
         Task<bool> Logout(int userId);
         Task<bool> Ban(int userId);
         Task<bool> CancelBan(int userId);
-        Task<bool> CheckAndUpdateUserActivity(int userId);
         Task<string> GetConnectionId(int userId);
+        Task<bool> UpdateUserStatus(int userId, DateTime lastActivity, string status);
+        Task<DateTime> GetLastActivity(int userId);
     }
 }

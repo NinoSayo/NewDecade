@@ -41,5 +41,6 @@ namespace Project3.Models
         public bool isBan { get; set; }
         public string? isOnline { get; set; }
         public string? ConnectionId { get; set; }
+        public DateTime LastActivity {  get; set; }
     }
 }
