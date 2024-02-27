@@ -29,7 +29,7 @@ const Login = ({ }) => {
       navigate('/profile/general');
     } catch (error) {
       setLoading(true);
-      toast.error("Invalid Username or Password. Please try again!",  { position: 'top-center' });
+      toast.error(error.response.data,  { position: 'top-center' });
       console.error("Error during API call:", error);
     }
   };
@@ -57,11 +57,9 @@ const Login = ({ }) => {
           </div>
           <div className="two-col">
             <div className="one">
-              <input type="checkbox" id="login-check" />
-              <label htmlFor="login-check"> Remember Me</label>
             </div>
             <div className="two">
-              <label>Forgot password?</label>
+              <label><Link to="/forgotpassword">Forgot password?</Link></label>
             </div>
           </div>
         </form>
